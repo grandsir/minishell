@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   constants.h                                        :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 00:53:56 by databey           #+#    #+#             */
-/*   Updated: 2024/06/15 20:57:21 by muyucego         ###   ########.fr       */
+/*   Created: 2024/06/16 18:51:24 by muyucego          #+#    #+#             */
+/*   Updated: 2024/06/16 18:52:11 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONSTANTS_H
-# define CONSTANTS_H
+#include "minishell.h"
 
-#define PROMPT "minishell$"
+int	find_matching_quote(char *line, int i, int *num_del, int del)
+{
+	int	j;
 
-#endif
+	j = i + 1;
+	*num_del += 1;
+	while (line[j] && line[j] != del)
+		j++;
+	if (line[j] == del)
+		*num_del += 1;
+	return (j - i);
+}

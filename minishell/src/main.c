@@ -3,19 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 00:39:38 by databey           #+#    #+#             */
-/*   Updated: 2024/05/06 00:49:13 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/16 20:29:38 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int main(int argc, char **argv)
+int main(int argc, char **argv, char **envp)
 {
-	(void) argc;
-	(void) argv;
-	system(argv[1]);
-	return (0);
+	t_global g;
+
+	if (argc != 1 || argv[1])
+		fatal_error(MS_INVALID_ARG);
+	g.envp = arrdup(envp);
+	find_pwd(&g);
+	setup_global(&g);
 }
