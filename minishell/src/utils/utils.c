@@ -6,7 +6,7 @@
 /*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:49:26 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/15 21:18:24 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/20 18:14:49 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	count_quotes(char *line)
 
 int	setup_global(t_global *g)
 {
-	g->simple_cmds = NULL;
+	g->cmds = NULL;
 	g->lexer_list = NULL;
 	g->reset = 0;
 	g->pid = NULL;

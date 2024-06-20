@@ -6,7 +6,7 @@
 /*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 00:40:02 by databey           #+#    #+#             */
-/*   Updated: 2024/06/16 19:17:13 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/20 18:33:46 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,62 +19,32 @@
 # include "../libft/includes/libft.h"
 # include "errors.h"
 # include "constants.h"
+# include "parser.h"
 # include <readline/readline.h>
 # include <readline/history.h>
 
-typedef enum s_tokens
-{
-	PIPE = 1,
-	LESSER,
-	LESSER_LESSER,
-	GREATER,
-	GREATER_GREATER,
-}	t_tokens;
 
-typedef struct s_lexer
-{
-	struct s_lexer	*next;
-	struct s_lexer	*previous;
-	char			*string;
-	t_tokens		token;
-	int				i;
-}	t_lexeme;
-    
-typedef struct s_global
-{
-	char					*args;
-	char					**paths;
-	char					**envp;
-	struct s_simple_cmds	*simple_cmds;
-	t_lexeme				*lexer_list;
-	char					*pwd;
-	char					*old_pwd;
-	int						pipes;
-	int						*pid;
-	int					heredoc;
-	int					reset;
-} t_global;
-
-typedef struct s_utils
-{
-	int	error_num;
-	int	stop_heredoc;
-	int	in_cmd;
-	int	in_heredoc;
-}	t_utils;
-
-t_utils	g_utils;
-
+t_commands	*commands_first(t_commands *map);
+t_commands	*new_command(char **str, int num_redir, t_lexeme *redir);
 t_lexeme	*new_lexeme(char *str, int token);
 char		**arrdup(char **arr);
+void		command_remove_first(t_commands **lst);
+void		command_add_back(t_commands **lst, t_commands *new);
+void		commands_clear(t_commands **lst);
+void		count_pipes(t_lexeme *lexeme_list, t_global *global);
 void		lexer_addback(t_lexeme **lst, t_lexeme *new);
 void		init_signals(void);
-void    	fatal_error(int err_no);
+void		parser_error(int error, t_global *g, t_lexeme *lexeme_list);
+void  		fatal_error(int err_no);
+void		ft_lexemeclear(t_lexeme **lst);
+void		ft_lexemedelone(t_lexeme **lst, int key);
+int			(*builtin(char *str))(t_global *g, t_commands *cmd);
 int			find_matching_quote(char *line, int i, int *num_del, int del);
+int			handle_pipe_errors(t_global *g, t_tokens token);
 int			parse_environment(t_global *g);
 int			skip_qwhitespace(int i, char *str, char q);
+int			add_new_redirection(t_lexeme *tmp, t_parser_utils *parser_utils);
 int			free_global(t_global *g);
-int			print_error(int err_no, t_global *g);
 int			count_quotes(char *line);
 int			setup_global(t_global *g);
 int			find_pwd(t_global *g);
@@ -86,6 +56,12 @@ int			add_node(char *str, t_tokens token, t_lexeme **lexeme_list);
 int			read_words(int i, char *str, t_lexeme **lexeme_list);
 int			token_reader(t_global *g);
 int			lifecycle(t_global *g);
+int 		parser(t_global *g);
+int			parser_token_error(t_global *g, t_lexeme *lexeme_list, t_tokens token);
+int			print_error(int err_no, t_global *g);
+
+
+
 
 t_tokens	check_token(int c);
 

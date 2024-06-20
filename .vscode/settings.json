@@ -3,6 +3,8 @@
         "stdlib.h": "c",
         "libft.h": "c",
         "minishell.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "constants.h": "c",
+        "readline.h": "c"
     }
 }
