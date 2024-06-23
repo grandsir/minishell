@@ -6,7 +6,7 @@
 /*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 03:56:15 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/20 16:31:22 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/23 22:51:40 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	lifecycle(t_global *g)
 		return (print_error(MS_INVALID_QUOTE, g));
 	if (!token_reader(g))
 		return (print_error(MS_MEMORY_FAILURE, g));
+	parser(g);
 	free_global(g);
 	return (1);
 }

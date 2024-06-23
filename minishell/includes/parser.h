@@ -6,7 +6,7 @@
 /*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:28:02 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/20 18:37:58 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/23 22:32:03 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,12 @@ typedef struct s_commands
 t_parser_utils	init_parser_utils(t_lexeme *lexer_list, t_global *global);
 t_lexeme		*find_next_cmd(t_lexeme *lexer_lst);
 void			rm_dcs(t_parser_utils *parser_utils);
-void			count_pipes(t_lexeme *lexer_list, t_global *tools);
+void			count_pipes(t_lexeme *lexer_list, t_global *g);
 int				parse_envp(t_global *global);
 int				find_pwd(t_global *global);
 int				parser(t_global *global);
 int				count_args(t_lexeme *lexer_list);
-int				add_new_dc(t_lexeme *tmp, t_parser_utils *parser_tools);
-int				handle_heredoc(t_parser_utils *parser_tools, t_lexeme *tmp);
+int				add_new_dc(t_lexeme *tmp, t_parser_utils *parser_g);
+int				handle_heredoc(t_parser_utils *parser_g, t_lexeme *tmp);
 
 #endif

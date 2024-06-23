@@ -5,6 +5,8 @@
         "minishell.h": "c",
         "stdio.h": "c",
         "constants.h": "c",
-        "readline.h": "c"
+        "readline.h": "c",
+        "parser.h": "c",
+        "builtins.h": "c"
     }
 }

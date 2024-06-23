@@ -6,7 +6,7 @@
 /*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:59:12 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/20 18:05:27 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/24 00:01:36 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	command_add_back(t_commands **lst, t_commands *new)
 t_commands	*new_command(char **str, int num_redir, t_lexeme *redir)
 {
 	t_commands	*new;
-
+    
 	new = (t_commands *)malloc(sizeof(t_commands));
 	if (!new)
 		return (0);
@@ -56,7 +56,6 @@ t_commands	*new_command(char **str, int num_redir, t_lexeme *redir)
 	new->prev = NULL;
 	return (new);
 }
-
 
 t_commands	*commands_first(t_commands *map)
 {

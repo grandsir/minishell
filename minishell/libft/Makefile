@@ -42,17 +42,17 @@ $(OBJECTS_DIR)%.o : $(SRC_DIR)%.c | $(CREATE_OBJ)
 	$(CC) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
 
 $(CREATE_OBJ):
-	mkdir -p $(OBJECTS_DIR)
-	mkdir -p $(OBJECTS_DIR)$(EXTRA_DIR)
-	mkdir -p $(OBJECTS_DIR)$(GNL_DIR)
-	mkdir -p $(OBJECTS_DIR)$(PRINTF_DIR)
+	@mkdir -p $(OBJECTS_DIR)
+	@mkdir -p $(OBJECTS_DIR)$(EXTRA_DIR)
+	@mkdir -p $(OBJECTS_DIR)$(GNL_DIR)
+	@mkdir -p $(OBJECTS_DIR)$(PRINTF_DIR)
 
 clean:
-	$(RM) -rf $(OBJECTS_DIR)
-	$(RM) -f $(OBJF)
+	@$(RM) -rf $(OBJECTS_DIR)
+	@$(RM) -f $(OBJF)
 
 fclean:		clean
-	$(RM) -f $(NAME)
+	@$(RM) -f $(NAME)
 
 re: fclean all
 
