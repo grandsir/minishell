@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 00:40:02 by databey           #+#    #+#             */
-/*   Updated: 2024/06/24 15:30:51 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/24 16:10:41 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_commands 	*expander_all(t_global *g, t_commands  *cmd);
 t_commands	*commands_first(t_commands *map);
 t_commands	*new_command(char **str, int num_redir, t_lexeme *redir);
 t_lexeme	*new_lexeme(char *str, int token);
+t_tokens	check_token(int c);
 size_t	    chr_sign(char *str);
 size_t		find_dol(char *str);
 char		**arrdup(char **arr);
@@ -98,10 +99,5 @@ int		    shell_exit(t_global *g, t_commands *cmd);
 int		    shell_continue(t_global *g, t_commands *cmd);
 int		    check_valid_identifier(char c);
 int	        check_cmd_path(t_commands  *cmd, t_global *g);
-
-
-
-t_tokens	check_token(int c);
-
 
 #endif

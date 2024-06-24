@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 16:28:02 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/23 22:32:03 by muyucego         ###   ########.fr       */
+/*   Created: 2024/06/17 16:28:02 by databey           #+#    #+#             */
+/*   Updated: 2024/06/24 16:10:03 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
