@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 02:05:51 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/20 17:32:11 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:27:23 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@
 # define MS_OUTFILE_EXCEPTION 8
 # define MS_INFILE_EXCEPTION 9
 # define MS_INVALID_PATH 10
+# define MS_EXPORT_ERROR 11
+# define MS_COMMAND_ERROR 12
 
 #endif

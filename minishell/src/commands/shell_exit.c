@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_exit.c                                        :+:      :+:    :+:   */
+/*   shell_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 10:10:47 by muyucego      #+#    #+#             */
-/*   Updated: 2024/06/23 22:32:03 by muyucego         ###   ########.fr       */
+/*   Created: 2024/06/24 13:54:17 by databey           #+#    #+#             */
+/*   Updated: 2024/06/24 15:22:35 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "minishell.h"
 #include <signal.h>
 
 void	free_g(t_global *g)
@@ -18,7 +18,7 @@ void	free_g(t_global *g)
 	free_arr(g->paths);
 	free_arr(g->envp);
 	free(g->args);
-	ft_commands clear(&g->cmds);
+	commands_clear(&g->cmds);
 	free(g->pwd);
 	free(g->old_pwd);
 	if (g->pipes)
@@ -58,17 +58,17 @@ void	determine_exit_code(char **str)
 	exit(exit_code);
 }
 
-int	shell_exit(t_global *g, t_commands  *simple_cmd)
+int	shell_exit(t_global *g, t_commands *cmd)
 {
 	char	**str;
 
 	ft_putendl_fd("exit", STDERR_FILENO);
-	if (simple_cmd->str[1] && simple_cmd->str[2])
+	if (cmd->str[1] && cmd->str[2])
 	{
 		ft_putstr_fd("minishell: exit: too many arguments\n", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
-	str = ft_arrdup(simple_cmd->str);
+	str = arrdup(cmd->str);
 	free_g(g);
 	determine_exit_code(str);
 	return (EXIT_SUCCESS);

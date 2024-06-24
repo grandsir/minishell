@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lifecycle.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 03:56:15 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/23 22:51:40 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:33:19 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,23 @@ int	free_global(t_global *g)
 	g->reset = 1;
 	lifecycle(g);
 	return (1);
+}
+
+int	exec(t_global *g)
+{
+	signal(SIGQUIT, s_quit);
+	g_utils.in_cmd = 1;
+	if (g->pipes == 0)
+		pipeless_cmd(g->cmds, g);
+	else
+	{
+		g->pid = ft_calloc(sizeof(int), g->pipes + 2);
+		if (!g->pid)
+			return (print_error(MS_MEMORY_FAILURE, g));
+		executor(g);
+	}
+	g_utils.in_cmd = 0;
+	return (EXIT_SUCCESS);
 }
 
 int	lifecycle(t_global *g)
@@ -45,6 +62,7 @@ int	lifecycle(t_global *g)
 	if (!token_reader(g))
 		return (print_error(MS_MEMORY_FAILURE, g));
 	parser(g);
+	exec(g);
 	free_global(g);
 	return (1);
 }

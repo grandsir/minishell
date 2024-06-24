@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:42:32 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/24 01:03:53 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:08:39 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	(*builtin_arr(char *str))(t_global *g, t_commands  *simple_cmd)
+int	(*builtin_arr(char *str))(t_global *g, t_commands  *cmd)
 {
 	static void	*builtins[7][2] = {
 	{"echo", shell_echo},

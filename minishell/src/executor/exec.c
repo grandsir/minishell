@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:09:50 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/24 13:25:00 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/24 13:48:48 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_commands 	*expander_all(t_global *g, t_commands  *cmd)
 	{
 		if (cmd->redirections->token != LESSER_LESSER)
 			cmd->redirections->string
-				= expander_all(g, cmd->redirections->string);
+				= expand_str(g, cmd->redirections->string);
 		cmd->redirections = cmd->redirections->next;
 	}
 	cmd->redirections = start;
@@ -89,7 +89,7 @@ int	executor(t_global *g)
 		g->cmds = expander_all(g, g->cmds);
 		if (g->cmds->next)
 			pipe(end);
-		send_heredoc(g, g->cmds);
+		exec_hdoc(g, g->cmds);
 		fork_multiple(g, end, fd_in, g->cmds);
 		close(end[1]);
 		if (g->cmds->prev)

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   shell_export.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:07:21 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/24 01:06:27 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:27:11 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "minishell.h"
 
 int	variable_exist(t_global *g, char *str)
 {
@@ -41,15 +41,15 @@ int	check_parameter(char *str)
 
 	i = 0;
 	if (ft_isdigit(str[0]))
-		return (export_error(str));
+		return (str_error(MS_EXPORT_ERROR, str));
 	if (chr_sign(str) == 0)
 		return (EXIT_FAILURE);
 	if (str[0] == '=')
-		return (export_error(str));
+		return (str_error(MS_EXPORT_ERROR, str));
 	while (str[i] != '=')
 	{
 		if (check_valid_identifier(str[i]))
-			return (export_error(str));
+			return (str_error(MS_EXPORT_ERROR, str));
 		i++;
 	}
 	return (EXIT_SUCCESS);
@@ -99,24 +99,24 @@ char	**add_var(char **arr, char *str)
 	return (rtn);
 }
 
-int	shell_export(t_global *g, t_commands  *simple_cmd)
+int	shell_export(t_global *g, t_commands  *cmd)
 {
 	char	**tmp;
 	int		i;
 
 	i = 1;
-	if (!simple_cmd->str[1] || simple_cmd->str[1][0] == '\0')
-		shell_env(g, simple_cmd);
+	if (!cmd->str[1] || cmd->str[1][0] == '\0')
+		shell_env(g, cmd);
 	else
 	{
-		while (simple_cmd->str[i])
+		while (cmd->str[i])
 		{
-			if (check_parameter(simple_cmd->str[i]) == 0
-				&& variable_exist(g, simple_cmd->str[i]) == 0)
+			if (check_parameter(cmd->str[i]) == 0
+				&& variable_exist(g, cmd->str[i]) == 0)
 			{
-				if (simple_cmd->str[i])
+				if (cmd->str[i])
 				{
-					tmp = add_var(g->envp, simple_cmd->str[i]);
+					tmp = add_var(g->envp, cmd->str[i]);
 					free_arr(g->envp);
 					g->envp = tmp;
 				}

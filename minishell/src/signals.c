@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:53:42 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/16 20:24:44 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:31:39 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	event(void)
 	return (EXIT_SUCCESS);
 }
 
-void	sigint_handler(int sig)
+void	s_cmd(int sig)
 {
 	if (!g_utils.in_heredoc)
 		ft_putstr_fd("\n", STDERR_FILENO);
@@ -35,7 +35,7 @@ void	sigint_handler(int sig)
 	(void) sig;
 }
 
-void	sigquit_handler(int sig)
+void	s_quit(int sig)
 {
 	ft_putstr_fd("Quit: ", STDERR_FILENO);
 	ft_putnbr_fd(sig, STDERR_FILENO);
@@ -45,6 +45,6 @@ void	sigquit_handler(int sig)
 void	init_signals(void)
 {
 	rl_event_hook = event;
-	signal(SIGINT, sigint_handler);
+	signal(SIGINT, s_cmd);
 	signal(SIGQUIT, SIG_IGN);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_cmd.c                                       :+:      :+:    :+:   */
+/*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 17:24:04 by muyucego      #+#    #+#             */
-/*   Updated: 2024/06/24 00:05:32 by muyucego         ###   ########.fr       */
+/*   Created: 2024/06/24 13:27:49 by databey           #+#    #+#             */
+/*   Updated: 2024/06/24 15:26:22 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_cmd_path(t_commands  *cmd, t_global *g)
 		free(mycmd);
 		i++;
 	}
-	return (cmd_not_found(cmd->str[0]));
+	return (str_error(MS_COMMAND_ERROR, cmd->str[0]));
 }
 
 void	execute_cmd(t_commands  *cmd, t_global *g)
@@ -38,7 +38,7 @@ void	execute_cmd(t_commands  *cmd, t_global *g)
 
 	exit_code = 0;
 	if (cmd->redirections)
-		if (check_redirections(cmd))
+		if (check_redir(cmd))
 			exit(1);
 	if (cmd->builtin != NULL)
 	{
@@ -53,10 +53,10 @@ void	execute_cmd(t_commands  *cmd, t_global *g)
 void	perform_dup(t_commands  *cmd, t_global *g, int end[2], int in_fd)
 {
 	if (cmd->prev && dup2(in_fd, STDIN_FILENO) < 0)
-		ft_error(4, g);
+		print_error(MS_PIPE_EXCEPTION, g);
 	close(end[0]);
 	if (cmd->next && dup2(end[1], STDOUT_FILENO) < 0)
-		ft_error(4, g);
+		print_error(MS_PIPE_EXCEPTION, g);
 	close(end[1]);
 	if (cmd->prev)
 		close(in_fd);
@@ -75,10 +75,10 @@ void	pipeless_cmd(t_commands *cmd, t_global *g)
 		g_utils.error_num = cmd->builtin(g, cmd);
 		return ;
 	}
-	send_heredoc(g, cmd);
+	exec_hdoc(g, cmd);
 	pid = fork();
 	if (pid < 0)
-		ft_error(5, g);
+		print_error(MS_FORK_FAILURE, g);
 	if (pid == 0)
 		execute_cmd(cmd, g);
 	waitpid(pid, &status, 0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 17:28:35 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/20 18:39:13 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/24 13:51:19 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_commands	*new_parser_command(t_parser_utils *parser_utils)
 	argc = count_args(parser_utils->lexer_list);
 	str = ft_calloc(argc + 1, sizeof(char *));
 	if (!str)
-		parser_error(1, parser_utils->g, parser_utils->lexer_list);
+		parser_error(MS_MEMORY_FAILURE, parser_utils->g, parser_utils->lexer_list);
 	tmp = parser_utils->lexer_list;
 	while (argc > 0)
 	{
@@ -69,7 +69,7 @@ int	parser(t_global *g)
 		parser_utils = init_parser_utils(g->lexer_list, g);
 		n = new_parser_command(&parser_utils);
 		if (!n)
-			parser_error(0, g, parser_utils.lexer_list);
+			parser_error(MS_INVALID_NEWLINE, g, parser_utils.lexer_list);
 		if (!g->cmds)
 			g->cmds = n;
 		else

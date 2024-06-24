@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/15 13:35:26 by fpolycar          #+#    #+#             */
-/*   Updated: 2024/06/24 00:00:51 by muyucego         ###   ########.fr       */
+/*   Created: 2024/06/24 13:28:18 by databey           #+#    #+#             */
+/*   Updated: 2024/06/24 14:52:49 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*detect_dollar_sign(t_global *g, char *str)
 			j += replace_dollar(g, str, &tmp, j);
 		else
 		{
-			tmp2 = char_to_str(str[j++]);
+			tmp2 = cstr(str[j++]);
 			tmp3 = ft_strjoin(tmp, tmp2);
 			free(tmp);
 			tmp = tmp3;
@@ -93,8 +93,8 @@ char	**expander(t_global *g, char **str)
 	tmp = NULL;
 	while (str[i] != NULL)
 	{
-		if (str[i][dollar_sign(str[i]) - 2] != '\'' && dollar_sign(str[i]) != 0
-			&& str[i][dollar_sign(str[i])])
+		if (str[i][find_dol(str[i]) - 2] != '\'' && find_dol(str[i]) != 0
+			&& str[i][find_dol(str[i])])
 		{
 			tmp = detect_dollar_sign(g, str[i]);
 			free(str[i]);
@@ -110,13 +110,13 @@ char	**expander(t_global *g, char **str)
 	return (str);
 }
 
-char	*expander_str(t_global *g, char *str)
+char	*expand_str(t_global *g, char *str)
 {
 	char	*tmp;
 
 	tmp = NULL;
-	if (str[dollar_sign(str) - 2] != '\'' && dollar_sign(str) != 0
-		&& str[dollar_sign(str)] != '\0')
+	if (str[find_dol(str) - 2] != '\'' && find_dol(str) != 0
+		&& str[find_dol(str)] != '\0')
 	{
 		tmp = detect_dollar_sign(g, str);
 		free(str);

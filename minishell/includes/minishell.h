@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 00:40:02 by databey           #+#    #+#             */
-/*   Updated: 2024/06/24 00:48:29 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:30:51 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,15 @@ t_commands	*commands_first(t_commands *map);
 t_commands	*new_command(char **str, int num_redir, t_lexeme *redir);
 t_lexeme	*new_lexeme(char *str, int token);
 size_t	    chr_sign(char *str);
+size_t		find_dol(char *str);
+char		**arrdup(char **arr);
 char	    **resplit_str(char **double_arr);
 char	    **expander(t_global *g, char **str);
 char		**arrdup(char **arr);
 char	    *replace_q(char *str, char c);
+char		*expand_str(t_global *g, char *str);
 char	    *detect_dollar_sign(t_global *g, char *str);
+char		*cstr(char c);
 char	    *ms_strjoin(char **s_str, char *str);
 void	    perform_dup(t_commands  *cmd, t_global *g, int end[2], int in_fd);
 void	    pipeless_cmd(t_commands *cmd, t_global *g);
@@ -43,12 +47,14 @@ void		commands_clear(t_commands **lst);
 void		count_pipes(t_lexeme *lexeme_list, t_global *global);
 void		lexer_addback(t_lexeme **lst, t_lexeme *new);
 void		init_signals(void);
+void		s_quit(int sig);
 void		parser_error(int error, t_global *g, t_lexeme *lexeme_list);
 void  		fatal_error(int err_no);
 void		ft_lexemeclear(t_lexeme **lst);
 void		ft_lexemedelone(t_lexeme **lst, int key);
 void        path_change(t_global *g);
 int			(*builtin(char *str))(t_global *g, t_commands *cmd);
+int			exec_hdoc(t_global *g, t_commands  *cmd);
 int			find_matching_quote(char *line, int i, int *num_del, int del);
 int			handle_pipe_errors(t_global *g, t_tokens token);
 int			parse_environment(t_global *g);
@@ -58,6 +64,8 @@ int			free_global(t_global *g);
 int			count_quotes(char *line);
 int			setup_global(t_global *g);
 int			find_pwd(t_global *g);
+int			str_error(int err_no, char *error);
+int			chr_dol(char *str, int j);
 int			is_whitespace(char c);
 int			parse_token(char *str, int i, t_lexeme **lexer_list);
 int			skip_qwhitespace(int i, char *str, char del);

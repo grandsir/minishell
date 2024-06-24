@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 17:42:39 by muyucego      #+#    #+#             */
-/*   Updated: 2024/06/24 00:38:48 by muyucego         ###   ########.fr       */
+/*   Created: 2024/06/24 13:28:04 by databey           #+#    #+#             */
+/*   Updated: 2024/06/24 14:55:25 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	create_heredoc(t_lexeme *heredoc, int quotes,
 		&& !g_utils.stop_heredoc)
 	{
 		if (quotes == 0)
-			line = expander_str(g, line);
+			line = expand_str(g, line);
 		write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);
 		free(line);
@@ -72,7 +72,7 @@ char	*generate_heredoc_filename(void)
 	return (file_name);
 }
 
-int	send_heredoc(t_global *g, t_commands  *cmd)
+int	exec_hdoc(t_global *g, t_commands  *cmd)
 {
 	t_lexeme	*start;
 	int		sl;
@@ -86,11 +86,11 @@ int	send_heredoc(t_global *g, t_commands  *cmd)
 			if (cmd->hd_file_name)
 				free(cmd->hd_file_name);
 			cmd->hd_file_name = generate_heredoc_filename();
-			sl = ft_heredoc(g, cmd->redirections, cmd->hd_file_name);
+			sl = heredoc(g, cmd->redirections, cmd->hd_file_name);
 			if (sl)
 			{
 				g_utils.error_num = 1;
-				return (reset_g(g));
+				return (free_global(g));
 			}
 		}
 		cmd->redirections = cmd->redirections->next;

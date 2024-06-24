@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   double_commands.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 18:31:39 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/20 18:38:49 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/24 13:52:55 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	add_new_dc(t_lexeme *tmp, t_parser_utils *parser_utils)
 
 	node = new_lexeme(ft_strdup(tmp->next->string), tmp->token);
 	if (!node)
-		parser_error(1, parser_utils->g, parser_utils->lexer_list);
+		parser_error(MS_MEMORY_FAILURE, parser_utils->g, parser_utils->lexer_list);
 	lexer_addback(&parser_utils->redirections, node);
 	index_1 = tmp->i;
 	index_2 = tmp->next->i;
@@ -54,7 +54,7 @@ void	rm_dcs(t_parser_utils *parser_utils)
 	if (!tmp || tmp->token == PIPE)
 		return ;
 	if (!tmp->next)
-		parser_error(0, parser_utils->g, parser_utils->lexer_list);
+		parser_error(MS_INVALID_NEWLINE, parser_utils->g, parser_utils->lexer_list);
 	if (tmp->next->token)
 		parser_token_error(parser_utils->g,
 			parser_utils->lexer_list, tmp->next->token);

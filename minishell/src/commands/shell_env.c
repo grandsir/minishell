@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_env.c                                         :+:      :+:    :+:   */
+/*   shell_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/16 12:09:05 by muyucego      #+#    #+#             */
-/*   Updated: 2024/06/23 22:32:03 by muyucego         ###   ########.fr       */
+/*   Created: 2024/06/24 13:54:10 by databey           #+#    #+#             */
+/*   Updated: 2024/06/24 15:09:00 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "minishell.h"
 
-int	shell_env(t_global *g, t_commands  *simple_cmd)
+int	shell_env(t_global *g, t_commands *cmd)
 {
 	int		i;
 
-	(void) simple_cmd;
+	(void) cmd;
 	i = 0;
 	while (g->envp[i])
 	{
