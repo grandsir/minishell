@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:28:02 by databey           #+#    #+#             */
-/*   Updated: 2024/06/24 16:10:03 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/24 17:06:11 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ typedef struct s_global
 	char					*old_pwd;
 	int						pipes;
 	int						*pid;
-	int					heredoc;
-	int					reset;
+	int						heredoc;
+	int						reset;
 } t_global;
 
 typedef struct s_utils

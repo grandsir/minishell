@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 03:56:15 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/24 16:22:57 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/24 17:07:08 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ char *get_prompt_str(t_global *g)
 	free(g->pwd);
 	free(g->old_pwd);
 	find_pwd(g);
-	ft_putstr_fd(PROMPT_COLOR, 1);
 	str = ft_strjoin(g->pwd, PROMPT);
 	return (str);
 }
