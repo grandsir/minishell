@@ -23,8 +23,7 @@ int	variable_exist(t_global *g, char *str)
 		replace_q(str, '\'');
 	while (g->envp[i])
 	{
-		if (ft_strncmp(g->envp[i],
-				str, chr_sign(g->envp[i])) == 0)
+		if (ft_strncmp(g->envp[i], str, chr_sign(g->envp[i])) == 0)
 		{
 			free(g->envp[i]);
 			g->envp[i] = ft_strdup(str);
@@ -99,7 +98,7 @@ char	**add_var(char **arr, char *str)
 	return (rtn);
 }
 
-int	shell_export(t_global *g, t_commands  *cmd)
+int	shell_export(t_global *g, t_commands *cmd)
 {
 	char	**tmp;
 	int		i;
@@ -111,8 +110,8 @@ int	shell_export(t_global *g, t_commands  *cmd)
 	{
 		while (cmd->str[i])
 		{
-			if (check_parameter(cmd->str[i]) == 0
-				&& variable_exist(g, cmd->str[i]) == 0)
+			if (check_parameter(cmd->str[i]) == 0 && variable_exist(g,
+					cmd->str[i]) == 0)
 			{
 				if (cmd->str[i])
 				{

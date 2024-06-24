@@ -24,15 +24,14 @@ void	print_lines(int i, char **str, int out)
 
 int	shell_echo(t_global *g, t_commands *cmd)
 {
-	int		i;
-	int		j;
-	int		newline;
+	int	i;
+	int	j;
+	int	newline;
 
 	i = 1;
 	newline = 0;
-	(void) g;
-	while (cmd->str[i] && cmd->str[i][0] == '-'
-		&& cmd->str[i][1] == 'n')
+	(void)g;
+	while (cmd->str[i] && cmd->str[i][0] == '-' && cmd->str[i][1] == 'n')
 	{
 		j = 1;
 		while (cmd->str[i][j] == 'n')

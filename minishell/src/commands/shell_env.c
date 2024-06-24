@@ -14,9 +14,9 @@
 
 int	shell_env(t_global *g, t_commands *cmd)
 {
-	int		i;
+	int	i;
 
-	(void) cmd;
+	(void)cmd;
 	i = 0;
 	while (g->envp[i])
 	{

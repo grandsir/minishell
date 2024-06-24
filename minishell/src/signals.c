@@ -32,7 +32,7 @@ void	s_cmd(int sig)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
-	(void) sig;
+	(void)sig;
 }
 
 void	s_quit(int sig)

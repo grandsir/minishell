@@ -45,11 +45,9 @@ int	find_pwd(t_global *g)
 	while (g->envp[i])
 	{
 		if (!ft_strncmp(g->envp[i], "PWD=", 4))
-			g->pwd = ft_substr(g->envp[i],
-					4, ft_strlen(g->envp[i]) - 4);
+			g->pwd = ft_substr(g->envp[i], 4, ft_strlen(g->envp[i]) - 4);
 		if (!ft_strncmp(g->envp[i], "OLDPWD=", 7))
-			g->old_pwd = ft_substr(g->envp[i],
-					7, ft_strlen(g->envp[i]) - 7);
+			g->old_pwd = ft_substr(g->envp[i], 7, ft_strlen(g->envp[i]) - 7);
 		i++;
 	}
 	return (1);

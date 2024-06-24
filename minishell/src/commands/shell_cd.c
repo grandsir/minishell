@@ -20,8 +20,8 @@ char	*find_path_ret(char *str, t_global *g)
 	while (g->envp[i])
 	{
 		if (!ft_strncmp(g->envp[i], str, ft_strlen(str)))
-			return (ft_substr(g->envp[i], ft_strlen(str),
-					ft_strlen(g->envp[i]) - ft_strlen(str)));
+			return (ft_substr(g->envp[i], ft_strlen(str), ft_strlen(g->envp[i])
+					- ft_strlen(str)));
 		i++;
 	}
 	return (NULL);
@@ -71,7 +71,7 @@ void	add_path_to_env(t_global *g)
 
 int	shell_cd(t_global *g, t_commands *cmd)
 {
-	int		ret;
+	int	ret;
 
 	if (!cmd->str[1])
 		ret = specific_path(g, "HOME=");

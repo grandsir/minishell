@@ -14,7 +14,7 @@
 
 char	*find_path(char **envp)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (envp[i])
@@ -38,8 +38,7 @@ int	parse_environment(t_global *g)
 	i = 0;
 	while (g->paths[i])
 	{
-		if (ft_strncmp(&g->paths[i][ft_strlen(g->paths[i]) - 1],
-			"/", 1) != 0)
+		if (ft_strncmp(&g->paths[i][ft_strlen(g->paths[i]) - 1], "/", 1) != 0)
 		{
 			tmp = ft_strjoin(g->paths[i], "/");
 			free(g->paths[i]);

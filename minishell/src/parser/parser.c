@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 17:28:35 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/24 13:51:19 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/25 01:34:24 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,18 @@ t_parser_utils	init_parser_utils(t_lexeme *lexer_list, t_global *g)
 
 t_commands	*new_parser_command(t_parser_utils *parser_utils)
 {
-	int         i;
-	int		    argc;
+	int			i;
+	int			argc;
 	t_lexeme	*tmp;
-    char	    **str;
+	char		**str;
 
 	i = 0;
 	rm_dcs(parser_utils);
 	argc = count_args(parser_utils->lexer_list);
 	str = ft_calloc(argc + 1, sizeof(char *));
 	if (!str)
-		parser_error(MS_MEMORY_FAILURE, parser_utils->g, parser_utils->lexer_list);
+		parser_error(MS_MEMORY_FAILURE, parser_utils->g,
+			parser_utils->lexer_list);
 	tmp = parser_utils->lexer_list;
 	while (argc > 0)
 	{
@@ -47,12 +48,13 @@ t_commands	*new_parser_command(t_parser_utils *parser_utils)
 		}
 		argc--;
 	}
-	return (new_command(str, parser_utils->num_redirections, parser_utils->redirections));
+	return (new_command(str, parser_utils->num_redirections,
+			parser_utils->redirections));
 }
 
 int	parser(t_global *g)
 {
-	t_commands	*n;
+	t_commands		*n;
 	t_parser_utils	parser_utils;
 
 	g->cmds = NULL;

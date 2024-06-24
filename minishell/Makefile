@@ -6,13 +6,13 @@
 #    By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 00:37:08 by databey           #+#    #+#              #
-#    Updated: 2024/06/24 00:53:19 by muyucego         ###   ########.fr        #
+#    Updated: 2024/06/25 00:59:58 by muyucego         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror #-g
 
 SRC_DIR = ./src/
 OBJ_DIR = ./obj/
@@ -31,7 +31,7 @@ PARSER_DIR_FILES = parser double_commands
 UTILS_DIR_FILES = parse_env utils utils2 utils3 utils4 lexer_utils command_utils builtin lexer_clear exec_utils
 ERROR_DIR_FILES = errors errors2
 EXECUTOR_DIR_FILES = check_redir exec execute_cmd expander heredoc
-COMMANDS_DIR_FILES = builtins shell_cd shell_echo shell_env shell_exit shell_export shell_pwd shell_unset 
+COMMANDS_DIR_FILES = shell_cd shell_echo shell_env shell_exit shell_export shell_pwd shell_unset 
 
 LEXER_FILES = $(addprefix $(LEXER_DIR), $(LEXER_DIR_FILES))
 UTILS_FILES = $(addprefix $(UTILS_DIR), $(UTILS_DIR_FILES))
@@ -63,13 +63,13 @@ obj:
 	@ mkdir -p $(OBJ_DIR)$(EXECUTOR_DIR)
 	@ mkdir -p $(OBJ_DIR)$(COMMANDS_DIR)
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
-	gcc $(FLAGS) -I $(INCLUDES) -I $(INC_DIR) -I $(LIBFT) -o $@ -c $<
+	cc $(FLAGS) -I $(INCLUDES) -I $(INC_DIR) -I $(LIBFT) -o $@ -c $<
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
 $(NAME): $(OBJ)
-	gcc $(OBJ) $(LIBFT) $(READLINE_LIB) -o $(NAME)
+	cc $(OBJ) $(LIBFT) $(READLINE_LIB) -o $(NAME)
 
 clean:
 	@rm -Rf $(OBJ_DIR)

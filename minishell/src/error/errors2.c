@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 12:23:22 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/24 13:52:54 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/25 01:19:36 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@ void	parser_error(int error, t_global *g, t_lexeme *lexeme_list)
 	print_error(error, g);
 }
 
-int	parser_token_error(t_global *g, t_lexeme *lexeme_list,
-	t_tokens token)
+int	parser_token_error(t_global *g, t_lexeme *lexeme_list, t_tokens token)
 {
-	ft_putstr_fd("syntax error: next unexpected token ",
-		STDERR_FILENO);
+	ft_putstr_fd("syntax error: next unexpected token ", STDERR_FILENO);
 	if (token == GREATER)
 		ft_putstr_fd("'>'\n", STDERR_FILENO);
 	else if (token == GREATER_GREATER)
@@ -44,8 +42,7 @@ int	handle_pipe_errors(t_global *g, t_tokens token)
 {
 	if (token == PIPE)
 	{
-		parser_token_error(g, g->lexer_list,
-			g->lexer_list->token);
+		parser_token_error(g, g->lexer_list, g->lexer_list->token);
 		return (EXIT_FAILURE);
 	}
 	if (!g->lexer_list)

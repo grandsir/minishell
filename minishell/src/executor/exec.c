@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-t_commands 	*expander_all(t_global *g, t_commands  *cmd)
+t_commands	*expander_all(t_global *g, t_commands *cmd)
 {
 	t_lexeme	*start;
 
@@ -21,8 +21,8 @@ t_commands 	*expander_all(t_global *g, t_commands  *cmd)
 	while (cmd->redirections)
 	{
 		if (cmd->redirections->token != LESSER_LESSER)
-			cmd->redirections->string
-				= expand_str(g, cmd->redirections->string);
+			cmd->redirections->string = expand_str(g,
+					cmd->redirections->string);
 		cmd->redirections = cmd->redirections->next;
 	}
 	cmd->redirections = start;
@@ -64,7 +64,7 @@ int	fork_multiple(t_global *g, int end[2], int in_fd, t_commands *cmd)
 	return (EXIT_SUCCESS);
 }
 
-int	check_heredoc(t_global *g, int end[2], t_commands  *cmd)
+int	check_heredoc(t_global *g, int end[2], t_commands *cmd)
 {
 	int	fd_in;
 
@@ -80,8 +80,8 @@ int	check_heredoc(t_global *g, int end[2], t_commands  *cmd)
 
 int	executor(t_global *g)
 {
-	int		end[2];
-	int		fd_in;
+	int	end[2];
+	int	fd_in;
 
 	fd_in = STDIN_FILENO;
 	while (g->cmds)
