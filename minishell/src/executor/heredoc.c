@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 13:28:04 by databey           #+#    #+#             */
-/*   Updated: 2024/06/24 14:55:25 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/24 15:49:11 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	create_heredoc(t_lexeme *heredoc, int quotes,
 	char	*line;
 
 	fd = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
-	line = readline(HEREDOC_PROMT);
+	line = readline(HEREDOC_PROMPT);
 	while (line && ft_strncmp(heredoc->string, line, ft_strlen(heredoc->string))
 		&& !g_utils.stop_heredoc)
 	{
@@ -28,7 +28,7 @@ int	create_heredoc(t_lexeme *heredoc, int quotes,
 		write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);
 		free(line);
-		line = readline(HEREDOC_PROMT);
+		line = readline(HEREDOC_PROMPT);
 	}
 	free(line);
 	if (g_utils.stop_heredoc || !line)

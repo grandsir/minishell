@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 03:56:15 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/24 15:33:19 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/24 15:57:02 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,23 @@ int	exec(t_global *g)
 	return (EXIT_SUCCESS);
 }
 
+char *get_prompt_str(t_global *g)
+{
+	char	*str;
+	find_pwd(g);
+	ft_putstr_fd(PROMPT_COLOR, 1);
+	str = ft_strjoin(g->pwd, PROMPT);
+	return (str);
+}
+
 int	lifecycle(t_global *g)
 {
 	char	*tmp;
+	char	*s;
 
-	g->args = readline(PROMPT);
+	s = get_prompt_str(g);
+	g->args = readline(s);
+	free(s);
 	tmp = ft_strtrim(g->args, " ");
 	free(g->args);
 	g->args = tmp;
