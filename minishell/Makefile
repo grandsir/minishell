@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+         #
+#    By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 00:37:08 by databey           #+#    #+#              #
-#    Updated: 2024/06/24 00:53:19 by muyucego         ###   ########.fr        #
+#    Updated: 2024/06/24 18:34:37 by databey          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror #-g
 
 SRC_DIR = ./src/
 OBJ_DIR = ./obj/
@@ -63,13 +63,13 @@ obj:
 	@ mkdir -p $(OBJ_DIR)$(EXECUTOR_DIR)
 	@ mkdir -p $(OBJ_DIR)$(COMMANDS_DIR)
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
-	gcc $(FLAGS) -I $(INCLUDES) -I $(INC_DIR) -I $(LIBFT) -o $@ -c $<
+	cc $(FLAGS) -I $(INCLUDES) -I $(INC_DIR) -I $(LIBFT) -o $@ -c $<
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
 $(NAME): $(OBJ)
-	gcc $(OBJ) $(LIBFT) $(READLINE_LIB) -o $(NAME)
+	cc $(OBJ) $(LIBFT) $(READLINE_LIB) -o $(NAME)
 
 clean:
 	@rm -Rf $(OBJ_DIR)

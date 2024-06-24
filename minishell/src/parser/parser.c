@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 17:28:35 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/24 13:51:19 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/24 18:34:15 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int	parser(t_global *g)
 	{
 		if (g->lexer_list && g->lexer_list->token == PIPE)
 			ft_lexemedelone(&g->lexer_list, g->lexer_list->i);
+		if (!g->lexer_list)
+			return (EXIT_FAILURE);
 		if (handle_pipe_errors(g, g->lexer_list->token))
 			return (EXIT_FAILURE);
 		parser_utils = init_parser_utils(g->lexer_list, g);
