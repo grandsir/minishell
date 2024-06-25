@@ -12,9 +12,9 @@
 
 #include "minishell.h"
 
-int main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
-	t_global g;
+	t_global	g;
 
 	if (argc != 1 || argv[1])
 		fatal_error(MS_INVALID_ARG);

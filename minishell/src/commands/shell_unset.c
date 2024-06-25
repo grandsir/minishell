@@ -32,7 +32,7 @@ char	**whileloop_del_var(char **arr, char **rtn, char *str)
 				return (rtn);
 			}
 			j++;
-		}	
+		}
 		i++;
 	}
 	return (rtn);
@@ -53,9 +53,9 @@ char	**del_var(char **arr, char *str)
 	return (rtn);
 }
 
-int	unset_error(t_commands  *cmd)
+int	unset_error(t_commands *cmd)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	if (!cmd->str[1])
@@ -82,7 +82,7 @@ int	unset_error(t_commands  *cmd)
 	return (EXIT_SUCCESS);
 }
 
-int	shell_unset(t_global *g, t_commands  *cmd)
+int	shell_unset(t_global *g, t_commands *cmd)
 {
 	char	**tmp;
 

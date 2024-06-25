@@ -6,42 +6,42 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 00:40:02 by databey           #+#    #+#             */
-/*   Updated: 2024/06/24 16:10:41 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/25 10:27:10 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include "../libft/includes/libft.h"
+# include "constants.h"
+# include "errors.h"
+# include "parser.h"
+# include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <fcntl.h>
-# include "../libft/includes/libft.h"
-# include <readline/readline.h>
 # include <readline/history.h>
-# include "errors.h"
-# include "constants.h"
-# include "parser.h"
+# include <readline/readline.h>
 
-t_commands 	*expander_all(t_global *g, t_commands  *cmd);
+t_commands	*expander_all(t_global *g, t_commands *cmd);
 t_commands	*commands_first(t_commands *map);
 t_commands	*new_command(char **str, int num_redir, t_lexeme *redir);
 t_lexeme	*new_lexeme(char *str, int token);
 t_tokens	check_token(int c);
-size_t	    chr_sign(char *str);
+size_t		chr_sign(char *str);
 size_t		find_dol(char *str);
 char		**arrdup(char **arr);
-char	    **resplit_str(char **double_arr);
-char	    **expander(t_global *g, char **str);
+char		**resplit_str(char **double_arr);
+char		**expander(t_global *g, char **str);
 char		**arrdup(char **arr);
-char	    *replace_q(char *str, char c);
+char		*replace_q(char *str, char c);
 char		*expand_str(t_global *g, char *str);
-char	    *detect_dollar_sign(t_global *g, char *str);
+char		*detect_dollar_sign(t_global *g, char *str);
 char		*cstr(char c);
-char	    *ms_strjoin(char **s_str, char *str);
-void	    perform_dup(t_commands  *cmd, t_global *g, int end[2], int in_fd);
-void	    pipeless_cmd(t_commands *cmd, t_global *g);
+char		*ms_strjoin(char **s_str, char *str);
+void		perform_dup(t_commands *cmd, t_global *g, int end[2], int in_fd);
+void		pipeless_cmd(t_commands *cmd, t_global *g);
 void		command_remove_first(t_commands **lst);
 void		command_add_back(t_commands **lst, t_commands *new);
 void		commands_clear(t_commands **lst);
@@ -50,14 +50,14 @@ void		lexer_addback(t_lexeme **lst, t_lexeme *new);
 void		init_signals(void);
 void		s_quit(int sig);
 void		parser_error(int error, t_global *g, t_lexeme *lexeme_list);
-void  		fatal_error(int err_no);
+void		fatal_error(int err_no);
 void		ft_lexemeclear(t_lexeme **lst);
 void		ft_lexemedelone(t_lexeme **lst, int key);
-void        path_change(t_global *g);
+void		path_change(t_global *g);
 int			(*builtin(char *str))(t_global *g, t_commands *cmd);
-int			exec_hdoc(t_global *g, t_commands  *cmd);
+int			exec_hdoc(t_global *g, t_commands *cmd);
 int			find_matching_quote(char *line, int i, int *num_del, int del);
-int			handle_pipe_errors(t_global *g, t_tokens token);
+int			handle_pipe_errors(t_global *g);
 int			parse_environment(t_global *g);
 int			skip_qwhitespace(int i, char *str, char q);
 int			add_new_redirection(t_lexeme *tmp, t_parser_utils *parser_utils);
@@ -75,29 +75,30 @@ int			add_node(char *str, t_tokens token, t_lexeme **lexeme_list);
 int			read_words(int i, char *str, t_lexeme **lexeme_list);
 int			token_reader(t_global *g);
 int			lifecycle(t_global *g);
-int 		parser(t_global *g);
-int			parser_token_error(t_global *g, t_lexeme *lexeme_list, t_tokens token);
-int         qm(char **tmp);
-int         check_redir(t_commands  *cmd);
-int         check_fd_in(char *file);
-int         check_fd_out(t_lexeme *redirection);
-int	        check_greater_greater(t_lexeme *redir);
-int         wait_for_pipe(int *pid, int count);
-int         fork_multiple(t_global *g, int end[2], int in_fd, t_commands *cmd);
-int	        check_heredoc(t_global *g, int end[2], t_commands  *cmd);
-int         executor(t_global *g);
-int	        replace_dollar(t_global *g, char *str, char **tmp, int j);
-int         skip_if_number(int j, char *str);
+int			parser(t_global *g);
+int			parser_token_error(t_global *g, t_lexeme *lexeme_list,
+				t_tokens token);
+int			qm(char **tmp);
+int			check_redir(t_commands *cmd);
+int			check_fd_in(char *file);
+int			check_fd_out(t_lexeme *redirection);
+int			check_greater_greater(t_lexeme *redir);
+int			wait_for_pipe(int *pid, int count);
+int			fork_multiple(t_global *g, int end[2], int in_fd, t_commands *cmd);
+int			check_heredoc(t_global *g, int end[2], t_commands *cmd);
+int			executor(t_global *g);
+int			replace_dollar(t_global *g, char *str, char **tmp, int j);
+int			skip_if_number(int j, char *str);
 int			print_error(int err_no, t_global *g);
-int		    shell_echo(t_global *g, t_commands *cmd);
-int		    shell_cd(t_global *g, t_commands *cmd);
-int		    shell_pwd(t_global *g, t_commands *cmd);
-int		    shell_export(t_global *g, t_commands *cmd);
-int		    shell_unset(t_global *g, t_commands *cmd);
-int		    shell_env(t_global *g, t_commands *cmd);
-int		    shell_exit(t_global *g, t_commands *cmd);
-int		    shell_continue(t_global *g, t_commands *cmd);
-int		    check_valid_identifier(char c);
-int	        check_cmd_path(t_commands  *cmd, t_global *g);
+int			shell_echo(t_global *g, t_commands *cmd);
+int			shell_cd(t_global *g, t_commands *cmd);
+int			shell_pwd(t_global *g, t_commands *cmd);
+int			shell_export(t_global *g, t_commands *cmd);
+int			shell_unset(t_global *g, t_commands *cmd);
+int			shell_env(t_global *g, t_commands *cmd);
+int			shell_exit(t_global *g, t_commands *cmd);
+int			shell_continue(t_global *g, t_commands *cmd);
+int			check_valid_identifier(char c);
+int			check_cmd_path(t_commands *cmd, t_global *g);
 
 #endif

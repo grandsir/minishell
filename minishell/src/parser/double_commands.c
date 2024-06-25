@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   double_commands.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 18:31:39 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/24 13:52:55 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/25 01:03:58 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ char	*join_heredoc(char *str1, char *str2)
 int	add_new_dc(t_lexeme *tmp, t_parser_utils *parser_utils)
 {
 	t_lexeme	*node;
-	int		index_1;
-	int		index_2;
+	int			index_1;
+	int			index_2;
 
 	node = new_lexeme(ft_strdup(tmp->next->string), tmp->token);
 	if (!node)
-		parser_error(MS_MEMORY_FAILURE, parser_utils->g, parser_utils->lexer_list);
+		parser_error(MS_MEMORY_FAILURE, parser_utils->g,
+			parser_utils->lexer_list);
 	lexer_addback(&parser_utils->redirections, node);
 	index_1 = tmp->i;
 	index_2 = tmp->next->i;
@@ -54,21 +55,20 @@ void	rm_dcs(t_parser_utils *parser_utils)
 	if (!tmp || tmp->token == PIPE)
 		return ;
 	if (!tmp->next)
-		parser_error(MS_INVALID_NEWLINE, parser_utils->g, parser_utils->lexer_list);
+		parser_error(MS_INVALID_NEWLINE, parser_utils->g,
+			parser_utils->lexer_list);
 	if (tmp->next->token)
-		parser_token_error(parser_utils->g,
-			parser_utils->lexer_list, tmp->next->token);
-	if ((tmp->token >= GREATER
-			&& tmp->token <= LESSER_LESSER))
+		parser_token_error(parser_utils->g, parser_utils->lexer_list,
+			tmp->next->token);
+	if ((tmp->token >= GREATER && tmp->token <= LESSER_LESSER))
 		add_new_dc(tmp, parser_utils);
 	rm_dcs(parser_utils);
 }
 
-
 int	count_args(t_lexeme *lexer_list)
 {
 	t_lexeme	*tmp;
-	int		i;
+	int			i;
 
 	i = 0;
 	tmp = lexer_list;

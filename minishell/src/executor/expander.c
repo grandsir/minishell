@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "builtins.h"
+#include "minishell.h"
 
 int	replace_dollar(t_global *g, char *str, char **tmp, int j)
 {
@@ -24,7 +24,8 @@ int	replace_dollar(t_global *g, char *str, char **tmp, int j)
 	ret = 0;
 	while (g->envp[k])
 	{
-		if (ft_strncmp(str + j + 1, g->envp[k], chr_sign(g->envp[k]) - 1) == 0 && chr_dol(str, j) - j == (int)chr_sign(g->envp[k]))
+		if (ft_strncmp(str + j + 1, g->envp[k], chr_sign(g->envp[k]) - 1) == 0
+			&& chr_dol(str, j) - j == (int)chr_sign(g->envp[k]))
 		{
 			tmp2 = ft_strdup(g->envp[k] + chr_sign(g->envp[k]));
 			tmp3 = ft_strjoin(*tmp, tmp2);

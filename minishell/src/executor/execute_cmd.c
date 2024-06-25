@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int	check_cmd_path(t_commands  *cmd, t_global *g)
+int	check_cmd_path(t_commands *cmd, t_global *g)
 {
 	int		i;
 	char	*mycmd;
@@ -32,7 +32,7 @@ int	check_cmd_path(t_commands  *cmd, t_global *g)
 	return (str_error(MS_COMMAND_ERROR, cmd->str[0]));
 }
 
-void	execute_cmd(t_commands  *cmd, t_global *g)
+void	execute_cmd(t_commands *cmd, t_global *g)
 {
 	int	exit_code;
 
@@ -50,7 +50,7 @@ void	execute_cmd(t_commands  *cmd, t_global *g)
 	exit(exit_code);
 }
 
-void	perform_dup(t_commands  *cmd, t_global *g, int end[2], int in_fd)
+void	perform_dup(t_commands *cmd, t_global *g, int end[2], int in_fd)
 {
 	if (cmd->prev && dup2(in_fd, STDIN_FILENO) < 0)
 		print_error(MS_PIPE_EXCEPTION, g);

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 22:26:25 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/24 14:52:49 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/25 01:01:14 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "builtins.h"
+#include "minishell.h"
 
 size_t	find_dol(char *str)
 {
@@ -41,9 +41,8 @@ int	chr_dol(char *str, int j)
 	int	i;
 
 	i = j + 1;
-	while (str[i] != '\0' && str[i] != '$' && str[i] != ' '
-		&& str[i] != '\"' && str[i] != '\'' && str[i] != '=' && str[i] != '-'
-		&& str[i] != ':')
+	while (str[i] != '\0' && str[i] != '$' && str[i] != ' ' && str[i] != '\"'
+		&& str[i] != '\'' && str[i] != '=' && str[i] != '-' && str[i] != ':')
 		i++;
 	return (i);
 }
@@ -85,11 +84,4 @@ char	*replace_q(char *str, char c)
 		i++;
 	}
 	return (str);
-}
-
-int	qm(char **tmp)
-{
-	free(*tmp);
-	*tmp = ft_itoa(g_utils.error_num);
-	return (ft_strlen(*tmp) + 1);
 }

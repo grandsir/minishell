@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lifecycle.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 03:56:15 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/24 17:07:08 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/25 00:50:34 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,10 @@ int	exec(t_global *g)
 	return (EXIT_SUCCESS);
 }
 
-char *get_prompt_str(t_global *g)
+char	*get_prompt_str(t_global *g)
 {
 	char	*str;
+
 	free(g->pwd);
 	free(g->old_pwd);
 	find_pwd(g);

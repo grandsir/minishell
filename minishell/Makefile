@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+         #
+#    By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 00:37:08 by databey           #+#    #+#              #
-#    Updated: 2024/06/24 18:34:37 by databey          ###   ########.fr        #
+#    Updated: 2024/06/25 00:59:58 by muyucego         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ PARSER_DIR_FILES = parser double_commands
 UTILS_DIR_FILES = parse_env utils utils2 utils3 utils4 lexer_utils command_utils builtin lexer_clear exec_utils
 ERROR_DIR_FILES = errors errors2
 EXECUTOR_DIR_FILES = check_redir exec execute_cmd expander heredoc
-COMMANDS_DIR_FILES = builtins shell_cd shell_echo shell_env shell_exit shell_export shell_pwd shell_unset 
+COMMANDS_DIR_FILES = shell_cd shell_echo shell_env shell_exit shell_export shell_pwd shell_unset 
 
 LEXER_FILES = $(addprefix $(LEXER_DIR), $(LEXER_DIR_FILES))
 UTILS_FILES = $(addprefix $(UTILS_DIR), $(UTILS_DIR_FILES))

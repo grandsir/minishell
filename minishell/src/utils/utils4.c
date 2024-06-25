@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 22:49:05 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/24 15:27:58 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/25 01:01:24 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ void	path_change(t_global *g)
 	g->old_pwd = tmp;
 	free(g->pwd);
 	g->pwd = getcwd(NULL, sizeof(NULL));
+}
+
+int	qm(char **tmp)
+{
+	free(*tmp);
+	*tmp = ft_itoa(g_utils.error_num);
+	return (ft_strlen(*tmp) + 1);
 }
 
 size_t	chr_sign(char *str)
@@ -58,8 +65,7 @@ int	check_valid_identifier(char c)
 {
 	return (c == '|' || c == '<' || c == '>' || c == '[' || c == ']'
 		|| c == '\'' || c == '\"' || c == ' ' || c == ',' || c == '.'
-		|| c == ':' || c == '/' || c == '{' || c == '}' || c == '+'
-		|| c == '^' || c == '%' || c == '#' || c == '@' || c == '!'
-		|| c == '~'
-		|| c == '=' || c == '-' || c == '?' || c == '&' || c == '*');
+		|| c == ':' || c == '/' || c == '{' || c == '}' || c == '+' || c == '^'
+		|| c == '%' || c == '#' || c == '@' || c == '!' || c == '~' || c == '='
+		|| c == '-' || c == '?' || c == '&' || c == '*');
 }

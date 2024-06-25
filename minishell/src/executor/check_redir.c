@@ -17,11 +17,9 @@ int	check_greater_greater(t_lexeme *redir)
 	int	fd;
 
 	if (redir->token == GREATER_GREATER)
-		fd = open(redir->string,
-				O_CREAT | O_RDWR | O_APPEND, 0644);
+		fd = open(redir->string, O_CREAT | O_RDWR | O_APPEND, 0644);
 	else
-		fd = open(redir->string,
-				O_RDWR | O_CREAT | O_TRUNC, 0644);
+		fd = open(redir->string, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	return (fd);
 }
 
@@ -66,7 +64,7 @@ int	check_fd_out(t_lexeme *redirection)
 	return (EXIT_SUCCESS);
 }
 
-int	check_redir(t_commands  *cmd)
+int	check_redir(t_commands *cmd)
 {
 	t_lexeme	*start;
 

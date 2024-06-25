@@ -12,8 +12,7 @@
 
 #include "minishell.h"
 
-int	create_heredoc(t_lexeme *heredoc, int quotes,
-	t_global *g, char *file_name)
+int	create_heredoc(t_lexeme *heredoc, int quotes, t_global *g, char *file_name)
 {
 	int		fd;
 	char	*line;
@@ -40,7 +39,7 @@ int	create_heredoc(t_lexeme *heredoc, int quotes,
 int	heredoc(t_global *g, t_lexeme *heredoc, char *file_name)
 {
 	int	quotes;
-	int		sl;
+	int	sl;
 
 	sl = EXIT_SUCCESS;
 	if ((heredoc->string[0] == '\"'
@@ -72,15 +71,15 @@ char	*generate_heredoc_filename(void)
 	return (file_name);
 }
 
-int	exec_hdoc(t_global *g, t_commands  *cmd)
+int	exec_hdoc(t_global *g, t_commands *cmd)
 {
 	t_lexeme	*start;
-	int		sl;
+	int			sl;
 
 	start = cmd->redirections;
 	sl = EXIT_SUCCESS;
 	while (cmd->redirections)
-	{	
+	{
 		if (cmd->redirections->token == LESSER_LESSER)
 		{
 			if (cmd->hd_file_name)
