@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 17:28:35 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/25 01:34:24 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/25 10:28:04 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	parser(t_global *g)
 	{
 		if (g->lexer_list && g->lexer_list->token == PIPE)
 			ft_lexemedelone(&g->lexer_list, g->lexer_list->i);
-		if (handle_pipe_errors(g, g->lexer_list->token))
+		if (handle_pipe_errors(g))
 			return (EXIT_FAILURE);
 		parser_utils = init_parser_utils(g->lexer_list, g);
 		n = new_parser_command(&parser_utils);

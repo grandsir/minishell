@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 02:05:51 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/25 01:14:52 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/25 10:30:30 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#ifndef ERRORS_H
+# define ERRORS_H
 
 # define MS_INVALID_ARG 1
 # define MS_INVALID_NEWLINE 2
@@ -25,5 +25,6 @@
 # define MS_INVALID_PATH 10
 # define MS_EXPORT_ERROR 11
 # define MS_COMMAND_ERROR 12
+# define MS_PARSER_PIPE_ERROR 13
 
 #endif

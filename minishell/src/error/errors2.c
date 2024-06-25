@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 12:23:22 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/25 01:19:36 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/25 10:33:14 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,19 @@ int	parser_token_error(t_global *g, t_lexeme *lexeme_list, t_tokens token)
 	return (EXIT_FAILURE);
 }
 
-int	handle_pipe_errors(t_global *g, t_tokens token)
+int	handle_pipe_errors(t_global *g)
 {
+	t_tokens	token;
+
+	if (!g->lexer_list)
+	{
+		parser_error(MS_PARSER_PIPE_ERROR, g, g->lexer_list);
+		return (EXIT_FAILURE);
+	}
+	token = g->lexer_list->token;
 	if (token == PIPE)
 	{
 		parser_token_error(g, g->lexer_list, g->lexer_list->token);
-		return (EXIT_FAILURE);
-	}
-	if (!g->lexer_list)
-	{
-		parser_error(MS_INVALID_NEWLINE, g, g->lexer_list);
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
