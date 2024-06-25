@@ -6,11 +6,10 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 13:28:18 by databey           #+#    #+#             */
-/*   Updated: 2024/06/24 16:20:03 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/25 13:00:30 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
 #include "minishell.h"
 
 int	replace_dollar(t_global *g, char *str, char **tmp, int j)

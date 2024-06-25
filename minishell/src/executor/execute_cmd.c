@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 13:27:49 by databey           #+#    #+#             */
-/*   Updated: 2024/06/24 15:26:22 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/25 14:04:32 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,17 @@ void	perform_dup(t_commands *cmd, t_global *g, int end[2], int in_fd)
 
 void	pipeless_cmd(t_commands *cmd, t_global *g)
 {
+	t_utils u;
 	int	pid;
 	int	status;
 
+	u = get_utils();
 	g->cmds = expander_all(g, g->cmds);
 	if (cmd->builtin == shell_exit || cmd->builtin == shell_cd
 		|| cmd->builtin == shell_unset || cmd->builtin == shell_export)
 	{
-		g_utils.error_num = cmd->builtin(g, cmd);
+		u.error_num = cmd->builtin(g, cmd);
+		set_utils(&u, 1);
 		return ;
 	}
 	exec_hdoc(g, cmd);
@@ -83,5 +86,9 @@ void	pipeless_cmd(t_commands *cmd, t_global *g)
 		execute_cmd(cmd, g);
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
-		g_utils.error_num = WEXITSTATUS(status);
+	{
+		u = get_utils();
+		u.error_num = WEXITSTATUS(status);
+		set_utils(&u, 1);
+	}
 }

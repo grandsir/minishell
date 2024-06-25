@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:49:26 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/20 18:14:49 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/25 14:10:49 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,7 @@ int	setup_global(t_global *g)
 	g->reset = 0;
 	g->pid = NULL;
 	g->heredoc = 0;
-	g_utils.stop_heredoc = 0;
-	g_utils.in_cmd = 0;
-	g_utils.in_heredoc = 0;
+	set_utils(NULL, 1);
 	parse_environment(g);
 	init_signals();
 	return (1);

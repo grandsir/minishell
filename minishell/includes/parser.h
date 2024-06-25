@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:28:02 by databey           #+#    #+#             */
-/*   Updated: 2024/06/25 00:36:08 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/25 13:45:59 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ typedef struct s_utils
 	int					in_cmd;
 	int					in_heredoc;
 }						t_utils;
-
-t_utils					g_utils;
 
 typedef struct s_parser_utils
 {

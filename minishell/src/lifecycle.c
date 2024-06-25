@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lifecycle.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 03:56:15 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/25 00:50:34 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/25 14:02:18 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,12 @@ int	free_global(t_global *g)
 
 int	exec(t_global *g)
 {
+	t_utils u;
+	
+	u = get_utils();
 	signal(SIGQUIT, s_quit);
-	g_utils.in_cmd = 1;
+	u.in_cmd = 1;
+	set_utils(&u, 1);
 	if (g->pipes == 0)
 		pipeless_cmd(g->cmds, g);
 	else
@@ -38,7 +42,9 @@ int	exec(t_global *g)
 			return (print_error(MS_MEMORY_FAILURE, g));
 		executor(g);
 	}
-	g_utils.in_cmd = 0;
+	u = get_utils();
+	u.in_cmd = 0;
+	set_utils(&u, 1);
 	return (EXIT_SUCCESS);
 }
 

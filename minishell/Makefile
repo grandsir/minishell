@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+         #
+#    By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 00:37:08 by databey           #+#    #+#              #
-#    Updated: 2024/06/25 00:59:58 by muyucego         ###   ########.fr        #
+#    Updated: 2024/06/25 13:05:15 by databey          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,9 +48,7 @@ SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 
-READLINE_DIR = $(shell brew --prefix readline)
-READLINE_LIB = -lreadline -lhistory -L $(READLINE_DIR)/lib
-INCLUDES = $(READLINE_DIR)/include 
+READLINE_LIB = -lreadline -lhistory 
 
 all: obj $(LIBFT) $(NAME)
 
@@ -63,7 +61,7 @@ obj:
 	@ mkdir -p $(OBJ_DIR)$(EXECUTOR_DIR)
 	@ mkdir -p $(OBJ_DIR)$(COMMANDS_DIR)
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
-	cc $(FLAGS) -I $(INCLUDES) -I $(INC_DIR) -I $(LIBFT) -o $@ -c $<
+	cc $(FLAGS) -I $(INC_DIR) -I $(LIBFT) -o $@ -c $<
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)

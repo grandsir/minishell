@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:53:42 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/24 15:31:39 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/25 14:03:25 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,15 @@ int	event(void)
 
 void	s_cmd(int sig)
 {
-	if (!g_utils.in_heredoc)
+	t_utils u;
+
+	u = get_utils();
+	if (!u.in_heredoc)
 		ft_putstr_fd("\n", STDERR_FILENO);
-	if (g_utils.in_cmd)
+	if (u.in_cmd)
 	{
-		g_utils.stop_heredoc = 1;
+		u.stop_heredoc = 1;
+		set_utils(&u, 1);
 		rl_replace_line("", 0);
 		rl_redisplay();
 		rl_done = 1;

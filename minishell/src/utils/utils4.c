@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   utils4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 22:49:05 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/25 01:01:24 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/25 14:09:37 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
 #include "minishell.h"
 
 void	path_change(t_global *g)
@@ -27,7 +26,7 @@ void	path_change(t_global *g)
 int	qm(char **tmp)
 {
 	free(*tmp);
-	*tmp = ft_itoa(g_utils.error_num);
+	*tmp = ft_itoa(get_utils().error_num);
 	return (ft_strlen(*tmp) + 1);
 }
 

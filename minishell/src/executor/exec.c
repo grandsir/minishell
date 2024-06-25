@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:09:50 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/24 13:48:48 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/25 14:10:14 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	wait_for_pipe(int *pid, int count)
 {
 	int	i;
 	int	status;
+	t_utils u;
 
 	i = 0;
 	while (i < count)
@@ -42,7 +43,11 @@ int	wait_for_pipe(int *pid, int count)
 	}
 	waitpid(pid[i], &status, 0);
 	if (WIFEXITED(status))
-		g_utils.error_num = WEXITSTATUS(status);
+	{
+		u = get_utils();
+		u.error_num = WEXITSTATUS(status);
+		set_utils(&u, 1);
+	}
 	return (EXIT_SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 13:28:04 by databey           #+#    #+#             */
-/*   Updated: 2024/06/24 15:49:11 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/25 14:09:22 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ int	create_heredoc(t_lexeme *heredoc, int quotes, t_global *g, char *file_name)
 {
 	int		fd;
 	char	*line;
+	t_utils	u;
 
+	u = get_utils();
 	fd = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	line = readline(HEREDOC_PROMPT);
 	while (line && ft_strncmp(heredoc->string, line, ft_strlen(heredoc->string))
-		&& !g_utils.stop_heredoc)
+		&& !u.stop_heredoc)
 	{
 		if (quotes == 0)
 			line = expand_str(g, line);
@@ -30,7 +32,7 @@ int	create_heredoc(t_lexeme *heredoc, int quotes, t_global *g, char *file_name)
 		line = readline(HEREDOC_PROMPT);
 	}
 	free(line);
-	if (g_utils.stop_heredoc || !line)
+	if (u.stop_heredoc || !line)
 		return (EXIT_FAILURE);
 	close(fd);
 	return (EXIT_SUCCESS);
@@ -38,9 +40,11 @@ int	create_heredoc(t_lexeme *heredoc, int quotes, t_global *g, char *file_name)
 
 int	heredoc(t_global *g, t_lexeme *heredoc, char *file_name)
 {
-	int	quotes;
-	int	sl;
+	int		quotes;
+	int		sl;
+	t_utils	u;
 
+	u = get_utils();
 	sl = EXIT_SUCCESS;
 	if ((heredoc->string[0] == '\"'
 			&& heredoc->string[ft_strlen(heredoc->string) - 1] == '\"')
@@ -51,12 +55,24 @@ int	heredoc(t_global *g, t_lexeme *heredoc, char *file_name)
 		quotes = 0;
 	replace_q(heredoc->string, '\"');
 	replace_q(heredoc->string, '\'');
-	g_utils.stop_heredoc = 0;
-	g_utils.in_heredoc = 1;
+	u.stop_heredoc = 0;
+	u.in_heredoc = 1;
+	set_utils(&u, 1);
 	sl = create_heredoc(heredoc, quotes, g, file_name);
-	g_utils.in_heredoc = 0;
+	u = get_utils();
+	u.in_heredoc = 0;
+	set_utils(&u, 1);
 	g->heredoc = 1;
 	return (sl);
+}
+
+void	set_error_num()
+{
+	t_utils	u;
+
+	u = get_utils();
+	u.error_num = 1;
+	set_utils(&u, 1);
 }
 
 char	*generate_heredoc_filename(void)
@@ -88,7 +104,7 @@ int	exec_hdoc(t_global *g, t_commands *cmd)
 			sl = heredoc(g, cmd->redirections, cmd->hd_file_name);
 			if (sl)
 			{
-				g_utils.error_num = 1;
+				set_error_num();
 				return (free_global(g));
 			}
 		}
