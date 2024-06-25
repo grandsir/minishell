@@ -31,9 +31,9 @@ t_commands	*expander_all(t_global *g, t_commands *cmd)
 
 int	wait_for_pipe(int *pid, int count)
 {
-	int	i;
-	int	status;
-	t_utils u;
+	int		i;
+	int		status;
+	t_utils	u;
 
 	i = 0;
 	while (i < count)

@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 00:40:02 by databey           #+#    #+#             */
-/*   Updated: 2024/06/25 14:01:11 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/25 14:21:27 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_commands	*commands_first(t_commands *map);
 t_commands	*new_command(char **str, int num_redir, t_lexeme *redir);
 t_lexeme	*new_lexeme(char *str, int token);
 t_tokens	check_token(int c);
-t_utils		get_utils();
+t_utils		get_utils(void);
 t_utils		set_utils(t_utils *ut, int set);
 size_t		chr_sign(char *str);
 size_t		find_dol(char *str);

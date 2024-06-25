@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 13:28:04 by databey           #+#    #+#             */
-/*   Updated: 2024/06/25 14:09:22 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/25 14:24:09 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	heredoc(t_global *g, t_lexeme *heredoc, char *file_name)
 	return (sl);
 }
 
-void	set_error_num()
+void	set_error_num(void)
 {
 	t_utils	u;
 

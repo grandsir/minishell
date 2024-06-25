@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 13:21:18 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/20 16:31:03 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:59:51 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ int	add_node(char *str, t_tokens token, t_lexeme **lexeme_list)
 
 int	read_words(int i, char *str, t_lexeme **lexeme_list)
 {
-	int	j;
+	size_t	j;
 
 	j = 0;
-	while (str[i + j] && !(check_token(str[i + j])))
+	while (i + j <= ft_strlen(str) && str[i + j] && !(check_token(str[i + j])))
 	{
 		j += skip_qwhitespace(i + j, str, '"');
 		j += skip_qwhitespace(i + j, str, '\'');
@@ -52,18 +52,18 @@ int	read_words(int i, char *str, t_lexeme **lexeme_list)
 		else
 			j++;
 	}
-	if (!add_node(ft_substr(str, i, j), 0, lexeme_list))
+	if (!add_node(ft_substr(str, i, j + 1), 0, lexeme_list))
 		return (-1);
 	return (j);
 }
 
 int	token_reader(t_global *g)
 {
-	int		i;
+	size_t	i;
 	int		j;
 
 	i = 0;
-	while (g->args[i])
+	while (i <= ft_strlen(g->args) && g->args[i])
 	{
 		j = 0;
 		i += skip_spaces(g->args, i);

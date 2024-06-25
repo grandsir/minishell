@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 03:56:15 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/25 14:02:18 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/25 16:13:17 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	free_global(t_global *g)
 
 int	exec(t_global *g)
 {
-	t_utils u;
-	
+	t_utils	u;
+
 	u = get_utils();
 	signal(SIGQUIT, s_quit);
 	u.in_cmd = 1;
@@ -51,12 +51,29 @@ int	exec(t_global *g)
 char	*get_prompt_str(t_global *g)
 {
 	char	*str;
+	char	*color;
 
 	free(g->pwd);
 	free(g->old_pwd);
 	find_pwd(g);
 	str = ft_strjoin(g->pwd, PROMPT);
-	return (str);
+	if (!str)
+		return (NULL);
+	color = ft_strjoin(PROMPT_COLOR, str);
+	free(str);
+	return (color);
+}
+
+int	lifecycle_commands(t_global *g)
+{
+	if (!count_quotes(g->args))
+		return (print_error(MS_INVALID_QUOTE, g));
+	if (!token_reader(g))
+		return (print_error(MS_MEMORY_FAILURE, g));
+	parser(g);
+	exec(g);
+	free_global(g);
+	return (1);
 }
 
 int	lifecycle(t_global *g)
@@ -69,21 +86,17 @@ int	lifecycle(t_global *g)
 	free(s);
 	tmp = ft_strtrim(g->args, " ");
 	free(g->args);
+	if (!tmp)
+		return (free_global(g));
 	g->args = tmp;
 	if (!g->args)
 	{
+		free(tmp);
 		ft_putendl_fd("exit", STDOUT_FILENO);
 		exit(EXIT_SUCCESS);
 	}
 	if (g->args[0] == '\0')
 		return (free_global(g));
 	add_history(g->args);
-	if (!count_quotes(g->args))
-		return (print_error(MS_INVALID_QUOTE, g));
-	if (!token_reader(g))
-		return (print_error(MS_MEMORY_FAILURE, g));
-	parser(g);
-	exec(g);
-	free_global(g);
-	return (1);
+	return (lifecycle_commands(g));
 }

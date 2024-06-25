@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:53:42 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/25 14:03:25 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/25 14:24:34 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	event(void)
 
 void	s_cmd(int sig)
 {
-	t_utils u;
+	t_utils	u;
 
 	u = get_utils();
 	if (!u.in_heredoc)
