@@ -84,19 +84,18 @@ char	*detect_dollar_sign(t_global *g, char *str)
 	return (tmp);
 }
 
-int q_ex(char *str)
+int	q_ex(char *str)
 {
 	int	dol;
 	int	z;
-	int q;
-	int qo;
+	int	q;
+	int	qo;
 
 	dol = find_dol(str);
 	z = 0;
 	q = 0;
 	qo = 0;
-
-	while(str[z])
+	while (str[z])
 	{
 		if (str[z] == '\'' && !q)
 			q = 1;
@@ -104,7 +103,6 @@ int q_ex(char *str)
 			qo = 1;
 		z++;
 	}
-
 	return (qo);
 }
 
@@ -117,8 +115,7 @@ char	**expander(t_global *g, char **str)
 	tmp = NULL;
 	while (str[i])
 	{
-		if (!q_ex(str[i]) && find_dol(str[i])
-			&& str[i][find_dol(str[i])])
+		if (!q_ex(str[i]) && find_dol(str[i]) && str[i][find_dol(str[i])])
 		{
 			tmp = detect_dollar_sign(g, str[i]);
 			free(str[i]);

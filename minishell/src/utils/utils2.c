@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 18:51:24 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/25 14:57:39 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/25 18:15:37 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ char	*expand_str(t_global *g, char *str)
 	char	*tmp;
 
 	tmp = NULL;
-	if (str[find_dol(str) - 2] != '\'' && find_dol(str) != 0
-		&& str[find_dol(str)] != '\0')
+	if (!q_ex(str) && find_dol(str)
+		&& str[find_dol(str)])
 	{
 		tmp = detect_dollar_sign(g, str);
 		free(str);

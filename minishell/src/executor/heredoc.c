@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 13:28:04 by databey           #+#    #+#             */
-/*   Updated: 2024/06/25 14:24:09 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/25 18:08:52 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*generate_heredoc_filename(void)
 	char		*file_name;
 
 	num = ft_itoa(i++);
-	file_name = ft_strjoin("build/.tmp_heredoc_file_", num);
+	file_name = ft_strjoin("obj/.tmp_heredoc_file_", num);
 	free(num);
 	return (file_name);
 }
