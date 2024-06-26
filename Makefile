@@ -6,13 +6,13 @@
 #    By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 00:37:08 by databey           #+#    #+#              #
-#    Updated: 2024/06/25 14:51:41 by databey          ###   ########.fr        #
+#    Updated: 2024/06/25 13:05:15 by databey          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror #-g
 
 SRC_DIR = ./src/
 OBJ_DIR = ./obj/
