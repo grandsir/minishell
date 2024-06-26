@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:59:12 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/25 00:52:40 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/26 14:10:15 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void	commands_clear(t_commands **lst)
 
 	if (!*lst)
 		return ;
+	while(((*lst)->prev))
+		*lst = ((*lst)->prev);
 	while (*lst)
 	{
 		tmp = (*lst)->next;
