@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 03:56:15 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/25 16:13:17 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/26 14:49:23 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	exec(t_global *g)
 {
 	t_utils	u;
 
-	u = get_utils();
 	signal(SIGQUIT, s_quit);
+	u = get_utils();
 	u.in_cmd = 1;
 	set_utils(&u, 1);
 	if (g->pipes == 0)
@@ -84,17 +84,16 @@ int	lifecycle(t_global *g)
 	s = get_prompt_str(g);
 	g->args = readline(s);
 	free(s);
+	if (!g->args)
+	{
+		ft_putendl_fd("exit", STDOUT_FILENO);
+		exit(EXIT_SUCCESS);
+	}
 	tmp = ft_strtrim(g->args, " ");
 	free(g->args);
 	if (!tmp)
 		return (free_global(g));
 	g->args = tmp;
-	if (!g->args)
-	{
-		free(tmp);
-		ft_putendl_fd("exit", STDOUT_FILENO);
-		exit(EXIT_SUCCESS);
-	}
 	if (g->args[0] == '\0')
 		return (free_global(g));
 	add_history(g->args);

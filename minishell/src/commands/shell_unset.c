@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 13:53:58 by databey           #+#    #+#             */
-/*   Updated: 2024/06/24 15:08:39 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/26 15:28:41 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ char	**whileloop_del_var(char **arr, char **rtn, char *str)
 	j = 0;
 	while (arr[i] != NULL)
 	{
+		
 		if (!(ft_strncmp(arr[i], str, chr_sign(arr[i]) - 1) == 0
-				&& str[chr_sign(arr[i])] == '\0'
+				&& (chr_sign(arr[i]) - 1) == ft_strlen(str)
 				&& arr[i][ft_strlen(str)] == '='))
 		{
 			rtn[j] = ft_strdup(arr[i]);
