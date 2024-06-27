@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 13:27:49 by databey           #+#    #+#             */
-/*   Updated: 2024/06/26 16:35:31 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/27 11:24:40 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

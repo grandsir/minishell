@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 02:03:38 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/25 10:32:51 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/27 11:48:14 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,9 @@ int	str_error(int err_no, char *error)
 {
 	if (err_no == MS_COMMAND_ERROR)
 	{
-		ft_putstr_fd("", STDERR_FILENO);
-		ft_putstr_fd(error, STDERR_FILENO);
-		ft_putstr_fd("\n\e[0;32m^\n\e[0;37m", STDERR_FILENO);
-		ft_putstr_fd("\e[1;31merror:\e[0;37m command not found.\n",
-			STDERR_FILENO);
+		printf("%s", error);
+		printf("\n\e[0;32m^\n\e[0;37m");
+		printf("\e[1;31merror:\e[0;37m command not found.\n");
 	}
 	else if (err_no == MS_EXPORT_ERROR)
 	{
