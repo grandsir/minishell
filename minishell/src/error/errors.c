@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 02:03:38 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/27 13:32:38 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/27 18:08:04 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	print_error(int err_no, t_global *g)
 	if (err_no == MS_INVALID_ARG)
 		printf("Minishell doesn't accept any arguments.\n");
 	else if (err_no == MS_INVALID_NEWLINE)
-		ft_putstr_fd("error near unexpected token 'newline'\n", STDERR_FILENO);
+		ft_putstr_fd("parse error near '\\n'\n", STDERR_FILENO);
 	else if (err_no == MS_MEMORY_FAILURE)
 		ft_putstr_fd("memory error: unable to assign memory\n", STDERR_FILENO);
 	else if (err_no == MS_INVALID_QUOTE)
