@@ -6,7 +6,7 @@
 #    By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 00:37:08 by databey           #+#    #+#              #
-#    Updated: 2024/06/27 17:17:21 by muyucego         ###   ########.fr        #
+#    Updated: 2024/06/27 17:46:37 by muyucego         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 
 READLINE_LIB = -lreadline -lhistory 
 
-all: x $(LIBFT) $(NAME)
+all: obj $(LIBFT) $(NAME)
 
 obj:
 	@ mkdir -p $(OBJ_DIR)
