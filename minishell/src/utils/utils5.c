@@ -6,7 +6,7 @@
 /*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 22:26:25 by databey           #+#    #+#             */
-/*   Updated: 2024/06/27 16:38:14 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:54:53 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void r_line(char **line, t_utils *u, int *fd, char *file_name)
 	*u = get_utils();
 	*fd = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	*line = readline(HEREDOC_PROMPT);
-	signal(SIGINT, heredoc_sig_handler);
 }
 
 void e_hdoc(t_lexeme *heredoc, int quotes, t_global *g, char *file_name)

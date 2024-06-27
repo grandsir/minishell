@@ -6,7 +6,7 @@
 /*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 13:28:04 by databey           #+#    #+#             */
-/*   Updated: 2024/06/27 16:44:33 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:57:29 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	create_heredoc(t_lexeme *heredoc, int quotes, t_global *g, char *file_name)
 	}
 	else if (pid == 0)
 	{
+		signal(SIGINT, heredoc_sig_handler);
 		e_hdoc(heredoc, quotes, g, file_name);
 	}
 	else
@@ -94,6 +95,7 @@ int	exec_hdoc(t_global *g, t_commands *cmd)
 
 	start = cmd->redirections;
 	sl = EXIT_SUCCESS;
+	
 	while (cmd->redirections)
 	{
 		if (cmd->redirections->token == LESSER_LESSER)
