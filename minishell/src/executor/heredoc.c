@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 13:28:04 by databey           #+#    #+#             */
-/*   Updated: 2024/06/25 18:08:52 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:52:45 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ int	create_heredoc(t_lexeme *heredoc, int quotes, t_global *g, char *file_name)
 		write(fd, "\n", 1);
 		free(line);
 		line = readline(HEREDOC_PROMPT);
+		printf("%s\n", line);
 	}
-	free(line);
-	if (u.stop_heredoc || !line)
+	if (line)
+		free(line);
+	if (u.stop_heredoc)
 		return (EXIT_FAILURE);
 	close(fd);
 	return (EXIT_SUCCESS);
