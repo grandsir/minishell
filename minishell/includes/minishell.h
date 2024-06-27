@@ -6,7 +6,7 @@
 /*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 00:40:02 by databey           #+#    #+#             */
-/*   Updated: 2024/06/25 18:15:00 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:37:22 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void		commands_clear(t_commands **lst);
 void		count_pipes(t_lexeme *lexeme_list, t_global *global);
 void		lexer_addback(t_lexeme **lst, t_lexeme *new);
 void		init_signals(void);
+void		e_hdoc(t_lexeme *heredoc, int quotes, t_global *g, char *file_name);
+void		heredoc_sig_handler(int sig);
 void		s_quit(int sig);
 void		parser_error(int error, t_global *g, t_lexeme *lexeme_list);
 void		fatal_error(int err_no);

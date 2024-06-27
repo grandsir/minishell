@@ -1,86 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils3.c                                           :+:      :+:    :+:   */
+/*   utils5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/23 22:26:25 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/25 13:04:00 by databey          ###   ########.fr       */
+/*   Created: 2024/06/27 22:26:25 by databey           #+#    #+#             */
+/*   Updated: 2024/06/27 16:38:14 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-size_t	find_dol(char *str)
+void	heredoc_sig_handler(int sig)
 {
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '$')
-			return (i + 1);
-		i++;
+	(void) sig;
+	if (get_utils().in_heredoc) {
+		exit(1);	
 	}
-	return (0);
 }
 
-char	*cstr(char c)
+void r_line(char **line, t_utils *u, int *fd, char *file_name)
 {
-	char	*str;
-
-	str = ft_calloc(sizeof(char), 2);
-	str[0] = c;
-	return (str);
+	*u = get_utils();
+	*fd = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
+	*line = readline(HEREDOC_PROMPT);
+	signal(SIGINT, heredoc_sig_handler);
 }
 
-int	chr_dol(char *str, int j)
+void e_hdoc(t_lexeme *heredoc, int quotes, t_global *g, char *file_name)
 {
-	int	i;
-
-	i = j + 1;
-	while (str[i] != '\0' && str[i] != '$' && str[i] != ' ' && str[i] != '\"'
-		&& str[i] != '\'' && str[i] != '=' && str[i] != '-' && str[i] != ':')
-		i++;
-	return (i);
-}
-
-size_t	quotes_lenght(char *str)
-{
-	int		i;
-	size_t	ret;
-
-	i = 0;
-	ret = 0;
-	while (str[i])
+	int		fd;
+	char	*line;
+	t_utils	u;
+	
+	r_line(&line, &u, &fd, file_name);
+	while (line && ft_strncmp(heredoc->string, line,
+			ft_strlen(heredoc->string)) && !u.stop_heredoc)
 	{
-		if (str[i] == '\'' || str[i] == '\"')
-		{
-			ret++;
-		}
-		i++;
+		if (quotes == 0)
+			line = expand_str(g, line);
+		write(fd, line, ft_strlen(line));
+		write(fd, "\n", 1);
+		free(line);
+		line = readline(HEREDOC_PROMPT);
 	}
-	return (ret);
-}
-
-char	*replace_q(char *str, char c)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (str[i])
+	if (line)
+		free(line);
+	if (u.stop_heredoc)
 	{
-		if (str[i] == c)
-		{
-			j = 0;
-			while (str[i + j] == c)
-				j++;
-			ft_strlcpy(&str[i], &str[i + j], strlen(str) - i);
-		}
-		i++;
+		close(fd);
+		exit(EXIT_FAILURE);
 	}
-	return (str);
+	close(fd);
+	exit(EXIT_SUCCESS);
 }

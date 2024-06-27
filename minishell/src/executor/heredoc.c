@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
+/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 13:28:04 by databey           #+#    #+#             */
-/*   Updated: 2024/06/27 15:52:45 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/27 16:44:33 by muyucego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,27 @@
 
 int	create_heredoc(t_lexeme *heredoc, int quotes, t_global *g, char *file_name)
 {
-	int		fd;
-	char	*line;
-	t_utils	u;
-
-	u = get_utils();
-	fd = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
-	line = readline(HEREDOC_PROMPT);
-	while (line && ft_strncmp(heredoc->string, line, ft_strlen(heredoc->string))
-		&& !u.stop_heredoc)
+	int 	pid;
+	int 	status;
+	
+	pid = fork();
+	if (pid == -1)
 	{
-		if (quotes == 0)
-			line = expand_str(g, line);
-		write(fd, line, ft_strlen(line));
-		write(fd, "\n", 1);
-		free(line);
-		line = readline(HEREDOC_PROMPT);
-		printf("%s\n", line);
+		print_error(MS_FORK_FAILURE, g);
+		exit(EXIT_FAILURE);
 	}
-	if (line)
-		free(line);
-	if (u.stop_heredoc)
-		return (EXIT_FAILURE);
-	close(fd);
+	else if (pid == 0)
+	{
+		e_hdoc(heredoc, quotes, g, file_name);
+	}
+	else
+	{
+		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+			return (WEXITSTATUS(status));
+		else
+			return (EXIT_FAILURE);
+	}
 	return (EXIT_SUCCESS);
 }
 
