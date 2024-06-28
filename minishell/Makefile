@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+         #
+#    By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 00:37:08 by databey           #+#    #+#              #
-#    Updated: 2024/06/27 17:46:37 by muyucego         ###   ########.fr        #
+#    Updated: 2024/06/28 15:11:51 by databey          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

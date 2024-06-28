@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 13:27:49 by databey           #+#    #+#             */
-/*   Updated: 2024/06/27 11:24:40 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/28 14:51:04 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	execute_cmd(t_commands *cmd, t_global *g)
 		exit_code = cmd->builtin(g, cmd);
 		exit(exit_code);
 	}
-	else if (cmd->str[0][0] != '\0')
+	else if (cmd->str[0] && cmd->str[0][0])
 		exit_code = check_cmd_path(cmd, g);
 	exit(exit_code);
 }

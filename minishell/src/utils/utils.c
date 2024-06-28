@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 10:49:26 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/25 14:10:49 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/28 14:48:05 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,20 @@ int	find_pwd(t_global *g)
 
 int	count_quotes(char *line)
 {
-	int	i;
-	int	s;
-	int	d;
+	size_t	i;
+	int		s;
+	int		d;
 
 	s = 0;
 	d = 0;
-	i = -1;
-	while (line[++i])
+	i = 0;
+	while ((i < ft_strlen(line)) && line[i])
 	{
 		if (line[i] == '"')
 			i += find_matching_quote(line, i, &d, '"');
 		if (line[i] == '\'')
 			i += find_matching_quote(line, i, &s, '\'');
+		i++;
 	}
 	if ((d > 0 && d % 2 != 0) || (s > 0 && s % 2 != 0))
 		return (0);

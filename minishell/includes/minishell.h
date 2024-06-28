@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 00:40:02 by databey           #+#    #+#             */
-/*   Updated: 2024/06/27 16:37:22 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/28 14:43:33 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void		fatal_error(int err_no);
 void		ft_lexemeclear(t_lexeme **lst);
 void		ft_lexemedelone(t_lexeme **lst, int key);
 void		path_change(t_global *g);
-int			q_ex(char *str);
+int			q_ex(char *str, char c);
+int			q_ex_dol(char *str);
 int			(*builtin(char *str))(t_global *g, t_commands *cmd);
 int			exec_hdoc(t_global *g, t_commands *cmd);
 int			find_matching_quote(char *line, int i, int *num_del, int del);

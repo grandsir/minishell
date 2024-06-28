@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 13:28:18 by databey           #+#    #+#             */
-/*   Updated: 2024/06/25 15:13:57 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/28 14:44:56 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,26 +84,17 @@ char	*detect_dollar_sign(t_global *g, char *str)
 	return (tmp);
 }
 
-int	q_ex(char *str)
+void	replace_quote(char *str)
 {
-	int	dol;
-	int	z;
-	int	q;
-	int	qo;
+	int	dq;
+	int	sq;
 
-	dol = find_dol(str);
-	z = 0;
-	q = 0;
-	qo = 0;
-	while (str[z])
-	{
-		if (str[z] == '\'' && !q)
-			q = 1;
-		else if (str[z] == '\'' && q && z > dol)
-			qo = 1;
-		z++;
-	}
-	return (qo);
+	sq = q_ex(str, '\'');
+	dq = q_ex(str, '\"');
+	if (sq < dq || !sq)
+		str = replace_q(str, '\'');
+	if (dq < sq || !dq)
+		str = replace_q(str, '\"');	
 }
 
 char	**expander(t_global *g, char **str)
@@ -115,7 +106,7 @@ char	**expander(t_global *g, char **str)
 	tmp = NULL;
 	while (str[i])
 	{
-		if (!q_ex(str[i]) && find_dol(str[i]) && str[i][find_dol(str[i])])
+		if (!q_ex_dol(str[i]) && find_dol(str[i]) && str[i][find_dol(str[i])])
 		{
 			tmp = detect_dollar_sign(g, str[i]);
 			free(str[i]);
@@ -123,8 +114,7 @@ char	**expander(t_global *g, char **str)
 		}
 		if (ft_strncmp(str[0], "export", ft_strlen(str[0]) - 1) != 0)
 		{
-			str[i] = replace_q(str[i], '\"');
-			str[i] = replace_q(str[i], '\'');
+			replace_quote(str[i]);
 		}
 		i++;
 	}
