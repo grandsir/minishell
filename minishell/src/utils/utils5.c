@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 22:26:25 by databey           #+#    #+#             */
-/*   Updated: 2024/06/28 14:43:35 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/29 07:53:44 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,10 @@ void e_hdoc(t_lexeme *heredoc, int quotes, t_global *g, char *file_name)
 	if (u.stop_heredoc)
 	{
 		close(fd);
+		free_g(g);
 		exit(EXIT_FAILURE);
 	}
 	close(fd);
+	free_g(g);
 	exit(EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 03:56:15 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/29 06:50:32 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/29 07:52:51 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	lifecycle(t_global *g)
 	if (!g->args)
 	{
 		ft_putendl_fd("exit", STDOUT_FILENO);
+		free_g(g);
 		exit(EXIT_SUCCESS);
 	}
 	tmp = ft_strtrim(g->args, " ");

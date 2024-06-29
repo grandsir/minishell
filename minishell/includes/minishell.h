@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 00:40:02 by databey           #+#    #+#             */
-/*   Updated: 2024/06/29 06:47:24 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/29 07:37:33 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void		init_signals(void);
 void		e_hdoc(t_lexeme *heredoc, int quotes, t_global *g, char *file_name);
 void		heredoc_sig_handler(int sig);
 void		s_quit(int sig);
+void		free_g(t_global *g);
 void		parser_error(int error, t_global *g, t_lexeme *lexeme_list);
 void		fatal_error(int err_no);
 void		ft_lexemeclear(t_lexeme **lst);

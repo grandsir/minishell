@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 13:54:17 by databey           #+#    #+#             */
-/*   Updated: 2024/06/26 17:06:41 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/29 07:59:52 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	free_g(t_global *g)
 	free(g->old_pwd);
 	if (g->pipes)
 		free(g->pid);
+	rl_clear_history();
 }
 
 int	id(char *str)
