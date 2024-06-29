@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 00:40:02 by databey           #+#    #+#             */
-/*   Updated: 2024/06/28 14:43:33 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/29 06:47:24 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int			find_matching_quote(char *line, int i, int *num_del, int del);
 int			handle_pipe_errors(t_global *g);
 int			parse_environment(t_global *g);
 int			skip_qwhitespace(int i, char *str, char q);
-int			add_new_redirection(t_lexeme *tmp, t_parser_utils *parser_utils);
 int			free_global(t_global *g);
 int			count_quotes(char *line);
 int			setup_global(t_global *g);

@@ -6,13 +6,11 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:09:50 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/28 13:59:44 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/29 06:01:19 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-
 
 t_commands	*expander_all(t_global *g, t_commands *cmd)
 {

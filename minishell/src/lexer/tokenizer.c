@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 13:21:18 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/28 13:31:51 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/29 05:39:42 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	read_words(int i, char *str, t_lexeme **lexeme_list)
 		else
 			j++;
 	}
-	if (!add_node(ft_substr(str, i, j + 1), 0, lexeme_list))
+	if (!add_node(ft_substr(str, i, j), 0, lexeme_list))
 		return (-1);
 	return (j);
 }
