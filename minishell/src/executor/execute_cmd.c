@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 13:27:49 by databey           #+#    #+#             */
-/*   Updated: 2024/06/29 07:53:08 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/29 08:53:59 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	check_cmd_path(t_commands *cmd, t_global *g)
 {
 	int		i;
 	char	*mycmd;
-	
+
 	i = 0;
 	cmd->str = resplit_str(cmd->str);
 	if (!access(cmd->str[0], F_OK))

@@ -14,9 +14,9 @@
 
 int	create_heredoc(t_lexeme *heredoc, int quotes, t_global *g, char *file_name)
 {
-	int 	pid;
-	int 	status;
-	
+	int	pid;
+	int	status;
+
 	pid = fork();
 	if (pid == -1)
 	{
@@ -95,7 +95,6 @@ int	exec_hdoc(t_global *g, t_commands *cmd)
 
 	start = cmd->redirections;
 	sl = EXIT_SUCCESS;
-	
 	while (cmd->redirections)
 	{
 		if (cmd->redirections->token == LESSER_LESSER)

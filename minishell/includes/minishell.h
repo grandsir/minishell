@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 00:40:02 by databey           #+#    #+#             */
-/*   Updated: 2024/06/29 07:37:33 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/29 09:05:45 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ size_t		find_dol(char *str);
 char		**arrdup(char **arr);
 char		**resplit_str(char **double_arr);
 char		**expander(t_global *g, char **str);
-char		**arrdup(char **arr);
 char		*replace_q(char *str, char c);
 char		*expand_str(t_global *g, char *str);
 char		*detect_dollar_sign(t_global *g, char *str);
@@ -59,6 +58,7 @@ void		fatal_error(int err_no);
 void		ft_lexemeclear(t_lexeme **lst);
 void		ft_lexemedelone(t_lexeme **lst, int key);
 void		path_change(t_global *g);
+void		print_hdoc(char *line, int fd);
 int			q_ex(char *str, char c);
 int			q_ex_dol(char *str);
 int			(*builtin(char *str))(t_global *g, t_commands *cmd);

@@ -94,7 +94,7 @@ void	replace_quote(char *str)
 	if (sq < dq || !sq)
 		str = replace_q(str, '\'');
 	if (dq < sq || !dq)
-		str = replace_q(str, '\"');	
+		str = replace_q(str, '\"');
 }
 
 char	**expander(t_global *g, char **str)

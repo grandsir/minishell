@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 22:26:25 by databey           #+#    #+#             */
-/*   Updated: 2024/06/29 07:53:44 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/29 09:06:50 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	heredoc_sig_handler(int sig)
 {
-	(void) sig;
-	if (get_utils().in_heredoc) {
-		exit(1);	
+	(void)sig;
+	if (get_utils().in_heredoc)
+	{
+		exit(1);
 	}
 }
 
-void r_line(char **line, t_utils *u, int *fd, char *file_name)
+void	r_line(char **line, t_utils *u, int *fd, char *file_name)
 {
 	*u = get_utils();
 	*fd = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	*line = readline(HEREDOC_PROMPT);
 }
-
 
 int	q_ex_dol(char *str)
 {
@@ -76,22 +76,19 @@ int	q_ex(char *str, char c)
 	return (q);
 }
 
-void e_hdoc(t_lexeme *heredoc, int quotes, t_global *g, char *file_name)
+void	e_hdoc(t_lexeme *heredoc, int quotes, t_global *g, char *file_name)
 {
 	int		fd;
 	char	*line;
 	t_utils	u;
-	
+
 	r_line(&line, &u, &fd, file_name);
-	while (line && ft_strncmp(heredoc->string, line,
-			ft_strlen(heredoc->string)) && !u.stop_heredoc)
+	while (line && ft_strncmp(heredoc->string, line, ft_strlen(heredoc->string))
+		&& !u.stop_heredoc)
 	{
 		if (quotes == 0)
 			line = expand_str(g, line);
-		write(fd, line, ft_strlen(line));
-		write(fd, "\n", 1);
-		free(line);
-		line = readline(HEREDOC_PROMPT);
+		print_hdoc(line, fd);
 	}
 	if (line)
 		free(line);

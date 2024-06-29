@@ -6,13 +6,13 @@
 #    By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 00:37:08 by databey           #+#    #+#              #
-#    Updated: 2024/06/29 06:28:01 by databey          ###   ########.fr        #
+#    Updated: 2024/06/29 08:59:48 by databey          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror
 
 SRC_DIR = ./src/
 OBJ_DIR = ./obj/
@@ -28,7 +28,7 @@ LIBFT_INCLUDE_DIR = ./libft/includes/
 
 LEXER_DIR_FILES = tokenizer parse_token
 PARSER_DIR_FILES = parser double_commands
-UTILS_DIR_FILES = parse_env utils utils2 utils3 utils4 utils5 lexer_utils command_utils builtin lexer_clear exec_utils
+UTILS_DIR_FILES = parse_env utils utils2 utils3 utils4 utils5 utils6 lexer_utils command_utils builtin lexer_clear exec_utils
 ERROR_DIR_FILES = errors errors2
 EXECUTOR_DIR_FILES = check_redir exec execute_cmd expander heredoc
 COMMANDS_DIR_FILES = shell_cd shell_echo shell_env shell_exit shell_export shell_pwd shell_unset 

@@ -48,7 +48,7 @@ int	exec(t_global *g)
 	return (EXIT_SUCCESS);
 }
 
-char	*get_prompt_str()
+char	*get_prompt_str(void)
 {
 	char	*color;
 
