@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 21:05:17 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/29 06:26:22 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/30 10:45:49 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	shell_echo(t_global *g, t_commands *cmd)
 			j++;
 		newline = 1;
 		i++;
-		break ;
 	}
 	print_lines(i, cmd->str, STDOUT_FILENO);
 	if (newline == 0)

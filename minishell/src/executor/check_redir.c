@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 11:39:57 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/24 01:04:07 by muyucego         ###   ########.fr       */
+/*   Created: 2024/06/08 11:39:57 by muyucego          #+#    #+#             */
+/*   Updated: 2024/06/30 12:23:20 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
