@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muyucego <muyucego@student.42kocaeli.co    +#+  +:+       +#+        */
+/*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 02:03:38 by muyucego          #+#    #+#             */
-/*   Updated: 2024/06/27 18:08:04 by muyucego         ###   ########.fr       */
+/*   Updated: 2024/06/30 14:28:31 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ int	print_error(int err_no, t_global *g)
 		ft_putstr_fd("Failed to create pipe\n", STDERR_FILENO);
 	else if (err_no == MS_FORK_FAILURE)
 		ft_putstr_fd("Failed to fork\n", STDERR_FILENO);
-	else if (err_no == 6)
+	else if (err_no == MS_OUTFILE_EXCEPTION)
 		ft_putstr_fd("outfile: Error\n", STDERR_FILENO);
-	else if (err_no == 7)
+	else if (err_no == MS_INFILE_EXCEPTION)
 		ft_putstr_fd("infile: No such file or directory\n", STDERR_FILENO);
-	else if (err_no == 8)
+	else if (err_no == MS_INVALID_PATH)
 		ft_putendl_fd("Path does not exist", STDERR_FILENO);
 	free_global(g);
 	return (EXIT_FAILURE);

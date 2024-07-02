@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 22:26:25 by databey           #+#    #+#             */
-/*   Updated: 2024/06/29 09:06:50 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/30 14:41:29 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	e_hdoc(t_lexeme *heredoc, int quotes, t_global *g, char *file_name)
 	{
 		if (quotes == 0)
 			line = expand_str(g, line);
-		print_hdoc(line, fd);
+		print_hdoc(&line, fd);
 	}
 	if (line)
 		free(line);

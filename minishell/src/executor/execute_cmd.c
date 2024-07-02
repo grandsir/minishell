@@ -6,7 +6,7 @@
 /*   By: databey <databey@student.42kocaeli.com.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 13:27:49 by databey           #+#    #+#             */
-/*   Updated: 2024/06/30 11:12:33 by databey          ###   ########.fr       */
+/*   Updated: 2024/06/30 14:31:08 by databey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,10 @@ void	execute_cmd(t_commands *cmd, t_global *g)
 	if (cmd->builtin != NULL)
 	{
 		exit_code = cmd->builtin(g, cmd);
-		free_g(g);
 		exit(exit_code);
 	}
 	else if (cmd->str[0] && cmd->str[0][0])
 		exit_code = check_cmd_path(cmd, g);
-	free_g(g);
 	exit(exit_code);
 }
 
